@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,26 +14,22 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('roles')->insert([
             [
                 'name' => 'Super Admin',
-                'email' => 'admin@test.com',
-                'password' => Hash::make('12345678'),
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'Project Manager',
-                'email' => 'pm@test.com',
-                'password' => Hash::make('12345678'),
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'Sales Manager',
-                'email' => 'sm@test.com',
-                'password' => Hash::make('12345678'),
+                'guard_name' => 'web',
             ],
             [
                 'name' => 'HR',
-                'email' => 'hr@test.com',
-                'password' => Hash::make('12345678'),
+                'guard_name' => 'web',
             ]
         ]);
     }
