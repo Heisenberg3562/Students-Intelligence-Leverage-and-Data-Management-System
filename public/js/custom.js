@@ -4,8 +4,8 @@
     $(document).ready(function()
     {
         var searchable = [];
-        var selectable = []; 
-        
+        var selectable = [];
+
 
         var dTable = $('#roles_table').DataTable({
 
@@ -14,7 +14,6 @@
             processing: true,
             responsive: false,
             serverSide: true,
-            processing: true,
             language: {
               processing: '<i class="ace-icon fa fa-spinner fa-spin orange bigger-500" style="font-size:60px;margin-top:50px;"></i>'
             },
@@ -135,8 +134,8 @@
     {
 
         var searchable = [];
-        var selectable = []; 
-        
+        var selectable = [];
+
 
         var dTable = $('#user_table').DataTable({
 
@@ -145,7 +144,6 @@
             processing: true,
             responsive: false,
             serverSide: true,
-            processing: true,
             language: {
               processing: '<i class="ace-icon fa fa-spinner fa-spin orange bigger-500" style="font-size:60px;margin-top:50px;"></i>'
             },

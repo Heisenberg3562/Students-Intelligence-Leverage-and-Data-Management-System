@@ -4,49 +4,57 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\User;
-use Auth;
+//use Auth;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\Traits\ApiResponse;
 
 class AuthController extends Controller
 {
+    use ApiResponse;
 
     public function login(Request $request)
     {
-        $validData = $request->validate([
+        $rules = [
             'email' => 'required|email|string',
-            'password' => 'required|string'
-        ]);
-
-
-        if(!Auth::attempt($validData)){
-            return response([
-                'message' => 'Invalid credentials!',
-                'success' => 0
-            ]);
+            'password' => 'required|string',
+        ];
+        $validator = Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return $this->fail(400,$validator->errors());
         }
-        
+        if(!Auth::attempt(['email'=>$request->email, 'password' => $request->password ])){
+            return $this->fail(400,'Invalid credentials!');
+        }
+
         $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
-        return  response([
-                    'user' => Auth::user(), 
-                    'access_token' => $accessToken,
-                    'success' => 1
-                ]);
+        return $this->success([
+            'user' => Auth::user(),
+            'access_token' => $accessToken
+        ],'Login successful!');
     }
 
 
 
     public function profile(Request $request)
     {
-        $user = Auth::user();
-        $roles = $user->getRoleNames();
-        $permission = $user->getAllPermissions();
-        return response([
-                    'user' => $user,
-                    'success' => 1
-                ]);
+        try{
+            $user = Auth::user();
+            $roles = $user->getRoleNames();
+            $permission = $user->getAllPermissions();
+            return $this->success([
+                'user' => $user,
+                'roles' => $roles,
+                'permission' => $permission
+            ],'Profile Data fetched successfully');
+        }catch(Exception $e){
+            Log::error('Error while fetching user : '.$e->getMessage());
+            return $this->fail(400,$e->getMessage());
+        }
     }
 
 
@@ -69,7 +77,7 @@ class AuthController extends Controller
                         'message' => 'Password has been changed',
                         'status'  => 1
                     ]);
-            
+
         }
             return response([
                         'message' => 'Password not matched!',
@@ -101,7 +109,7 @@ class AuthController extends Controller
 
         $user->update($validData);
 
-        
+
         return response([
                     'message' => 'Profile updated successfully!',
                     'status'  => 1
@@ -111,13 +119,12 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $user = Auth::user()->token();
-        $user->revoke();
-
-        return response([
-                    'message' => 'Logged out succesfully!',
-                    'status'  => 0
-                ]);
+        if(Auth::check()) {
+            $user = Auth::user()->token();
+            $user->revoke();
+            return $this->success([], 'Logged out successfullly.');
+        }
+        return $this->fail(400,'Unable to logout');
     }
 
 }

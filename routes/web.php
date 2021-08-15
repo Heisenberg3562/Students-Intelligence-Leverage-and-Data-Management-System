@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\StreamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -75,6 +77,22 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('/permission/update', [PermissionController::class,'update']);
 		Route::get('/permission/delete/{id}', [PermissionController::class,'delete']);
 	});
+
+    Route::group(['middleware' => 'can:manage_stream|manage_user'], function(){
+        Route::get('/stream', [StreamController::class,'index']);
+        Route::get('/stream/get-list', [StreamController::class,'getStreamList']);
+        Route::post('/stream/create', [StreamController::class,'create']);
+        Route::get('/stream/update', [StreamController::class,'update']);
+        Route::get('/stream/delete/{id}', [StreamController::class,'delete']);
+    });
+
+    Route::group(['middleware' => 'can:manage_branch|manage_user'], function(){
+        Route::get('/branch', [BranchController::class,'index']);
+        Route::get('/branch/get-list', [BranchController::class,'getBranchList']);
+        Route::post('/branch/create', [BranchController::class,'create']);
+        Route::get('/branch/update', [BranchController::class,'update']);
+        Route::get('/branch/delete/{id}', [BranchController::class,'delete']);
+    });
 
 	// get permissions
 	Route::get('get-role-permissions-badge', [PermissionController::class,'getPermissionBadgeByRole']);
