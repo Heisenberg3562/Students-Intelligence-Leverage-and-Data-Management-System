@@ -34,6 +34,10 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'manage_sales',
                 'guard_name' => 'web',
+            ],
+            [
+                'name' => 'manage_projects',
+                'guard_name' => 'web',
             ]
         ]);
     }
