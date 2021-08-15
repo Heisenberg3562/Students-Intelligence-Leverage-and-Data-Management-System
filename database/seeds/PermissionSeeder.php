@@ -16,6 +16,10 @@ class PermissionSeeder extends Seeder
     {
         DB::table('permissions')->insert([
             [
+                'name' => 'manage_attendance',
+                'guard_name' => 'web',
+            ],
+            [
                 'name' => 'manage_role',
                 'guard_name' => 'web',
             ],
