@@ -39,6 +39,12 @@
                         @can('manage_stream')
                             <a href="{{url('stream')}}" class="menu-item {{ ($segment1 == 'stream') ? 'active' : '' }}">{{ __('Stream')}}</a>
                         @endcan
+                        @can('manage_branch')
+                            <a href="{{url('branch')}}" class="menu-item {{ ($segment1 == 'branch') ? 'active' : '' }}">{{ __('Branch')}}</a>
+                        @endcan
+                        @can('manage_course')
+                            <a href="{{url('course')}}" class="menu-item {{ ($segment1 == 'course') ? 'active' : '' }}">{{ __('Course')}}</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="nav-lavel">{{ __('Documentation')}} </div>

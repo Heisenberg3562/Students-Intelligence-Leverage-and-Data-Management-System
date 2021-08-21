@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StreamController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -92,6 +94,23 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/branch/create', [BranchController::class,'create']);
         Route::get('/branch/update', [BranchController::class,'update']);
         Route::get('/branch/delete/{id}', [BranchController::class,'delete']);
+    });
+
+    Route::group(['middleware' => 'can:manage_course|manage_user'], function(){
+        Route::get('/course', [CourseController::class,'index']);
+        Route::get('/course/get-list', [CourseController::class,'getCourseList']);
+        Route::post('/course/create', [CourseController::class,'create']);
+        Route::get('/course/update', [CourseController::class,'update']);
+        Route::get('/course/delete/{id}', [CourseController::class,'delete']);
+    });
+
+    Route::group(['middleware' => 'can:manage_semester|manage_user'], function(){
+        Route::get('/semester', [SemesterController::class,'index']);
+        Route::get('/semester/get-list', [SemesterController::class,'getSemesterList']);
+        Route::get('/semester/get-course-list', [SemesterController::class,'getCoursesList']);
+        Route::post('/semester/create', [SemesterController::class,'create']);
+        Route::get('/semester/update', [SemesterController::class,'update']);
+        Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
     });
 
 	// get permissions

@@ -5,16 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Branch extends Model
+class Semester extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name','code','duration','stream_id'
+        'number','batch','branch_id'
     ];
     public $timestamps = false;
-    public function stream()
+    public function branch()
     {
-        return $this->belongsTo(Stream::class);
+        return $this->belongsTo(Branch::class);
     }
     public function courses()
     {
