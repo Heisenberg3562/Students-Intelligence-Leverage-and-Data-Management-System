@@ -50,13 +50,13 @@
                                 <div class="col-sm-1">
                                     <div class="form-group">
                                         <label for="batch">{{ __('Batch')}}<span class="text-red">*</span></label>
-                                        <input type="number" class="form-control" id="batch" name="batch" placeholder="Batch" required>
+                                        <input type="number" class="form-control" id="batch" name="batch" min="1000" max="9999" placeholder="Batch" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
                                         <label for="number">{{ __('Number')}}<span class="text-red">*</span></label>
-                                        <input type="number" class="form-control" id="number" name="number" placeholder="Number" required>
+                                        <input type="number" class="form-control" id="number" name="number" min="1" max="10" placeholder="1-10" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -65,9 +65,9 @@
                                         {!! Form::select('branch', $branches, null,[ 'class'=>'form-control select2', 'id' => 'branch']) !!}
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail3">{{ __('Assign to Branch')}} </label>
+                                        <label for="exampleInputEmail3">{{ __('Assign Courses')}} </label>
                                         {!! Form::select('course[]', $courses, null,[ 'class'=>'form-control select2', 'multiple' => 'multiple', 'id' => 'courses']) !!}
                                     </div>
                                 </div>
@@ -93,6 +93,7 @@
                                     <th>{{ __('Batch')}}</th>
                                     <th>{{ __('Number')}}</th>
                                     <th>{{ __('Assigned Branch')}}</th>
+                                    <th>{{ __('Assigned Courses')}}</th>
                                     <th>{{ __('Action')}}</th>
                                 </tr>
                             </thead>

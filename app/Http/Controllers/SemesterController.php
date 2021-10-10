@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Course;
 use App\Semester;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
 class SemesterController extends Controller
@@ -28,6 +30,22 @@ class SemesterController extends Controller
      *
      */
     public function index()
+    {
+        try{
+//            $role = Role::where('name','Admin')->first()->users;
+//            $nonmembers = $users->reject(function ($user, $key) {
+//                return $user->hasRole('Member');
+//            });
+            $branches = Branch::pluck('name','id');
+            $courses = Course::pluck('name','id');
+            return view('admin.semester', compact('branches','courses'));
+        }catch (\Exception $e) {
+            $bug = $e->getMessage();
+            return redirect()->back()->with('error', $bug);
+        }
+    }
+
+    public function getSemester()
     {
         try{
             $branches = Branch::pluck('name','id');
@@ -68,6 +86,16 @@ class SemesterController extends Controller
             ->addColumn('branches', function($data){
                 return $data->branch->name;
             })
+            ->addColumn('courses', function($data){
+                $list = DB::table('semester_has_courses')->where('semester_id',$data->id)->pluck('course_id');
+                $courses = Course::whereIn('id',$list)->get();
+                $badges = '';
+                foreach ($courses as $key => $course) {
+                    $badges .= '<span class="badge badge-dark m-1">'.$course->name.'</span>';
+                }
+
+                return $badges;
+            })
             ->addColumn('action', function($data){
                 if (Auth::user()->can('manage_semester')){
                     return '<div class="table-actions">
@@ -77,7 +105,7 @@ class SemesterController extends Controller
                     return '';
                 }
             })
-            ->rawColumns(['batch','number','branches','action'])
+            ->rawColumns(['batch','number','branches','courses','action'])
             ->make(true);
     }
 

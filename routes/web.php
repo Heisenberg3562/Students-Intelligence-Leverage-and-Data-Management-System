@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['middleware' => 'can:manage_semester|manage_user'], function(){
         Route::get('/semester', [SemesterController::class,'index']);
+//        Route::get('/semester/{id}', [SemesterController::class,'getSemester']);
         Route::get('/semester/get-list', [SemesterController::class,'getSemesterList']);
         Route::get('/semester/get-course-list', [SemesterController::class,'getCoursesList']);
         Route::post('/semester/create', [SemesterController::class,'create']);

@@ -32,6 +32,7 @@
                 {data:'batch', name: 'batch'},
                 {data:'number', name: 'number'},
                 {data:'branches', name: 'branches'},
+                {data:'courses', name: 'courses'},
                 {data:'action', name: 'action', orderable:false}
             ],
             buttons: [
