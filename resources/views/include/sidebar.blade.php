@@ -173,7 +173,7 @@
                 <div class="nav-item">
                     <a href="javascript:void(0)" class="disabled"><i class="ik ik-slash"></i><span>{{ __('Disabled Menu')}}</span></a>
                 </div>
-
+            </nav>
         </div>
     </div>
 </div>
