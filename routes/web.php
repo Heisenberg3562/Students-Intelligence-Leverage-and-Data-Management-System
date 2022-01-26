@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StreamController;
@@ -111,6 +112,14 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/semester/create', [SemesterController::class,'create']);
         Route::get('/semester/update', [SemesterController::class,'update']);
         Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
+    });
+
+    Route::group(['middleware' => 'can:manage_attendance|manage_user'], function(){
+        Route::get('/attendance', [AttendanceController::class,'index']);
+        Route::get('/attendance/get-list', [AttendanceController::class,'getAttendanceList']);
+        Route::post('/attendance/create', [AttendanceController::class,'create']);
+        Route::get('/attendance/update', [AttendanceController::class,'update']);
+        Route::get('/attendance/delete/{id}', [AttendanceController::class,'delete']);
     });
 
 	// get permissions

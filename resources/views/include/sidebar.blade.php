@@ -45,6 +45,9 @@
                         @can('manage_course')
                             <a href="{{url('course')}}" class="menu-item {{ ($segment1 == 'course') ? 'active' : '' }}">{{ __('Course')}}</a>
                         @endcan
+                        @can('manage_attendance')
+                            <a href="{{url('attendance')}}" class="menu-item {{ ($segment1 == 'attendance') ? 'active' : '' }}">{{ __('Attendance')}}</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="nav-lavel">{{ __('Documentation')}} </div>
