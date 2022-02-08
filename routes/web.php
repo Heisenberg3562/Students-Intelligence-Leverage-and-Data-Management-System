@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MarksController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StreamController;
 use Illuminate\Support\Facades\Route;
@@ -114,6 +115,15 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
     });
 
+    Route::group(['middleware' => 'can:manage_result|manage_user'], function(){
+        Route::get('/result', [MarksController::class,'index']);
+        Route::get('/result/get-list', [MarksController::class,'getResultList']);
+        Route::get('/result/upload', [MarksController::class,'uploadContent']);
+        Route::post('/result/create', [MarksController::class,'create']);
+        Route::get('/result/update', [MarksController::class,'update']);
+        Route::get('/result/delete/{id}', [MarksController::class,'delete']);
+    });
+
 	// get permissions
 	Route::get('get-role-permissions-badge', [PermissionController::class,'getPermissionBadgeByRole']);
 
@@ -176,3 +186,4 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/register', function () { return view('pages.register'); });
 Route::get('/login-1', function () { return view('pages.login'); });
+
