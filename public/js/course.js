@@ -145,7 +145,7 @@
         dTable.MakeCellsEditable({
             "onUpdate": updateCourse, //call function to update in backend
             "inputCss":'form-control',
-            "columns": [0,1,2],
+            "columns": [0,1],
             "confirmationButton": { // could also be true
                 "confirmCss": 'btn btn-success',
                 "cancelCss": 'btn btn-danger'

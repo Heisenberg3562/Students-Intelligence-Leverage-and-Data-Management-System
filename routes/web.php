@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\BranchController;
-use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MarksController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StreamController;
 use Illuminate\Support\Facades\Route;
@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['middleware' => 'can:manage_semester|manage_user'], function(){
         Route::get('/semester', [SemesterController::class,'index']);
+//        Route::get('/semester/{id}', [SemesterController::class,'getSemester']);
         Route::get('/semester/get-list', [SemesterController::class,'getSemesterList']);
         Route::get('/semester/get-course-list', [SemesterController::class,'getCoursesList']);
         Route::post('/semester/create', [SemesterController::class,'create']);
@@ -114,12 +115,13 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
     });
 
-    Route::group(['middleware' => 'can:manage_attendance|manage_user'], function(){
-        Route::get('/attendance', [AttendanceController::class,'index']);
-        Route::get('/attendance/get-list', [AttendanceController::class,'getAttendanceList']);
-        Route::post('/attendance/create', [AttendanceController::class,'create']);
-        Route::get('/attendance/update', [AttendanceController::class,'update']);
-        Route::get('/attendance/delete/{id}', [AttendanceController::class,'delete']);
+    Route::group(['middleware' => 'can:manage_result|manage_user'], function(){
+        Route::get('/result', [MarksController::class,'index']);
+        Route::get('/result/get-list', [MarksController::class,'getResultList']);
+        Route::get('/result/upload', [MarksController::class,'uploadContent']);
+        Route::post('/result/create', [MarksController::class,'create']);
+        Route::get('/result/update', [MarksController::class,'update']);
+        Route::get('/result/delete/{id}', [MarksController::class,'delete']);
     });
 
 	// get permissions
@@ -184,3 +186,4 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/register', function () { return view('pages.register'); });
 Route::get('/login-1', function () { return view('pages.login'); });
+

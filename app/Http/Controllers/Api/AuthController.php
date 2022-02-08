@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\User;
@@ -85,6 +87,70 @@ class AuthController extends Controller
                     ]);
     }
 
+    public function sendOtp(Request $request){
+        try{
+            DB::beginTransaction();
+            $rules = [
+                'email' => 'required|email|string',
+            ];
+            $validator = Validator::make($request->all(),$rules);
+            if($validator->fails()){
+                return $this->fail(400,$validator->errors());
+            }
+            $user = User::where('email',$request->email)->first();
+            if (!$user) {
+                return $this->fail(400,'Invalid Email');
+            }
+            $otp = rand(1000,9999);
+            $user->otp = $otp;
+            $user->save();
+            Mail::send('emails.sendOTP',['otp' => $otp], function ($message) use ($user) {
+                $message->to($user->email)->subject('Password Reset OTP!');
+            });
+            DB::commit();
+            return $this->success([
+                'user' => $user,
+            ],'OTP sent successfully');
+        }catch(Exception $e){
+            DB::rollBack();
+            Log::error('Error while sending OTP : '.$e->getMessage());
+            return $this->fail(400,$e->getMessage());
+        }
+    }
+
+    public function verifyOtp(Request $request){
+        try{
+            DB::beginTransaction();
+            $rules = [
+                'email' => 'required|email|string',
+                'otp' => 'required|integer',
+            ];
+            $validator = Validator::make($request->all(),$rules);
+            if($validator->fails()){
+                return $this->fail(400,$validator->errors());
+            }
+            $user = User::where('email',$request->email)->first();
+            if (!$user) {
+                return $this->fail(400,'Invalid Email');
+            }
+            if ($user->otp == $request->otp) {
+                $user->otp = 0;
+                $user->save();
+                Auth::loginUsingId($user->id);
+                $accessToken = Auth::user()->createToken('authToken')->accessToken;
+                DB::commit();
+                return $this->success([
+                    'user' => $user,
+                    'access_token' => $accessToken,
+                ],'Valid OTP');
+            }
+            return $this->fail(400,'Invalid OTP');
+        }catch(Exception $e){
+            DB::rollBack();
+            Log::error('Error while sending OTP : '.$e->getMessage());
+            return $this->fail(400,$e->getMessage());
+        }
+    }
 
     public function updateProfile(Request $request)
     {
