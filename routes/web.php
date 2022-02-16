@@ -107,9 +107,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::group(['middleware' => 'can:manage_semester|manage_user'], function(){
         Route::get('/semester', [SemesterController::class,'index']);
-//        Route::get('/semester/{id}', [SemesterController::class,'getSemester']);
+        Route::get('/semesters/{id}', [SemesterController::class,'getSemesterInfo']);
         Route::get('/semester/get-list', [SemesterController::class,'getSemesterList']);
         Route::get('/semester/get-course-list', [SemesterController::class,'getCoursesList']);
+        Route::get('/semesters/get-courses', [SemesterController::class,'getCourses']);
         Route::post('/semester/create', [SemesterController::class,'create']);
         Route::get('/semester/update', [SemesterController::class,'update']);
         Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
