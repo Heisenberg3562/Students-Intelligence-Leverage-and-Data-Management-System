@@ -123,7 +123,7 @@ class MarksController extends Controller
 
     public function uploadContent(Request $request)
     {
-        dd($request);
+//        dd($request);
         $file = $request->file('uploaded_file');
         if ($file) {
             $filename = $file->getClientOriginalName();

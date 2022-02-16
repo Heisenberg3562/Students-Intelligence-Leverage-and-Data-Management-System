@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Log;
 
 class SemesterController extends Controller
 {
@@ -45,12 +46,13 @@ class SemesterController extends Controller
         }
     }
 
-    public function getSemester()
+    public function getSemesterInfo($id)
     {
         try{
             $branches = Branch::pluck('name','id');
             $courses = Course::pluck('name','id');
-            return view('admin.semester', compact('branches','courses'));
+            $semester = Semester::findOrFail($id);
+            return view('admin.semester.list', compact('branches','courses','semester'));
         }catch (\Exception $e) {
             $bug = $e->getMessage();
             return redirect()->back()->with('error', $bug);
@@ -65,6 +67,49 @@ class SemesterController extends Controller
         }
         return $html;
     }
+
+    public function getCourses($id,Request $request)
+    {
+//        dd("Hello");
+        Log::useDailyFiles(storage_path().'/logs/debug.log');
+        Log::info("Hello");
+        $data  = DB::table('semester_has_courses')->where('semester_id',$_GET['semester'])->get();
+
+        return Datatables::of($data)
+            ->addColumn('courses', function($data){
+                return $data->course_id;
+            })
+            ->addColumn('prof', function($data){
+//                return User::find($data->prof_id);
+                return $data->prof_id;
+            })
+
+//            ->addColumn('branches', function($data){
+//                return $data->branch->name;
+//            })
+//            ->addColumn('courses', function($data){
+//                $list = DB::table('semester_has_courses')->where('semester_id',$data->id)->pluck('course_id');
+//                $courses = Course::whereIn('id',$list)->get();
+//                $badges = '';
+//                foreach ($courses as $key => $course) {
+//                    $badges .= '<span class="badge badge-dark m-1">'.$course->name.'</span>';
+//                }
+//
+//                return $badges;
+//            })
+            ->addColumn('action', function($data){
+                if (Auth::user()->can('manage_semester')){
+                    return '<div class="table-actions">
+                                    <a href="'.url('semester/delete/'.$data->id).'"><i class="ik ik-trash-2 f-16 text-red"></i></a>
+                                </div>';
+                }else{
+                    return '';
+                }
+            })
+            ->rawColumns(['courses','prof','action'])
+            ->make(true);
+    }
+
 
     /**
      * Show the role list with associate permissions.
