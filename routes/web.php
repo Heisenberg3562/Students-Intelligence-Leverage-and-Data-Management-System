@@ -128,6 +128,8 @@ Route::group(['middleware' => 'auth'], function(){
 	// get permissions
 	Route::get('get-role-permissions-badge', [PermissionController::class,'getPermissionBadgeByRole']);
 
+    Route::get('/resultupdate', [ResultController::class,'import']);
+
 
 	// permission examples
     Route::get('/permission-example', function () {
