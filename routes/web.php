@@ -26,7 +26,7 @@ use App\Http\Controllers\PermissionController;
 |
 */
 Route::get('/', function () { return view('home'); });
-
+Route::get('/homepage', function () { return view('homepage'); });
 
 Route::get('login', [LoginController::class,'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class,'login']);
