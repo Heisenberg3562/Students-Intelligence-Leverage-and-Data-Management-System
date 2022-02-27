@@ -3,12 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Cleo - Agency Landing Page Template</title>
+	<title>SILDMS | Student Intelligence Leverage and Data Management System</title>
 	<link rel="icon" href="{{ asset('fassets/images/favicon.png') }}">
 
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<!-- end font -->
+
+    <!-- new font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500;700&family=Merriweather:wght@300;500;700&family=PT+Sans&display=swap" rel="stylesheet"> 
+
+    <!-- end new font -->
 
 	<link rel="stylesheet" href="{{ asset('fassets/css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('fassets/css/ionicons.min.css') }}">
@@ -34,16 +42,7 @@
 						<a class="nav-link" href="#home">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#about">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#portfolio">Portfolio</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#services">Services</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#news">News</a>
+						<a class="nav-link" href="#process-work">Features</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#contact">Contact us</a>
@@ -60,11 +59,10 @@
 			<div class="row">
 				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div class="content">
-						<h2><span class="color-highlight">Student Intelligence</span> Leverage and</h2>
-						<h2>Data Management <span class="color-highlight">System</span></h2>
-						<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam dicta impedit iste!</p>-->
+						<h2><span class="color-highlight">Student Intelligence</span> <span class="color-highlight1">Leverage and</span></h2>
+						<h2><span class="color-highlight1">Data Management </span><span class="color-highlight">System</span></h2>
 						<ul>
-							<li><a href="" class="button">Log in</a></li>
+							<li><a href="/login" class="button">Login</a></li>
 							<li><a href="" class="button button-secondary">Sign up</a></li>
 						</ul>
 					</div>
@@ -79,42 +77,12 @@
 	</div>
 	<!-- end home intro -->
 
- 
-	<!-- about us -->
-<!--
-	<div id="about" class="about">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 col-md-6 col-xs-12">
-					<div class="content-image">
-						<img src="{{ asset('fassets/images/about-img.png') }}" alt="">
-					</div>
-				</div>
-				<div class="col-sm-12 col-md-6 col-xs-12">
-					<div class="content">
-						<h3>Why Choose Us?</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aliquid expedita repellendus a officiis ullam quas, dignissimos iure! Molestiae, asperiores.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt debitis ullam temporibus laudantium, repellendus ipsum dicta velit autem tenetur non quisquam ad cum laboriosam vero, ab voluptatem fugiat! Culpa, quam!</p>
-						<ul>
-							<li><span class="circle-list"></span>Complete features</li>
-							<li><span class="circle-list"></span>Lorem ipsum dolor sit</li>
-							<li><span class="circle-list"></span>dolore architecto officiis</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
--->
-	<!-- end about us -->
-
-	<!-- process work -->
+	<!-- features -->
 
     <div id="process-work" class="process-work section">
 		<div class="container">
 			<div class="section-title">
-				<h5 class="title-top">Features</h5>
-	<!-- 			<h3>Features</h3> -->
+				<h3 class="title-top">Features</h3>
 			</div>
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
@@ -149,261 +117,40 @@
 		</div>
 	</div>
 
-	<!-- end process work -->
-
-	<!-- portfolio -->
-
-	<div id="portfolio" class="portfolio section-bottom-only">
-		<div class="container">
-			<div class="section-title">
-				<h5 class="title-top">Work</h5>
-				<h3>Our Work Portfolio</h3>
-			</div>
-			<div class="row no-gutters filter-container">
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="3">
-					<div class="content-image">
-						<a href="{{ asset('fassets/images/portfolio1.jpg') }}" class="portfolio-popup">
-							<img src="{{ asset('fassets/images/portfolio1.jpg') }}" alt="portfolio-image">
-							<div class="image-overlay"></div>
-							<div class="image-caption">
-								<h4>Color Wall</h4>
-								<span>Branding</span>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1">
-					<div class="content-image">
-						<a href="{{ asset('fassets/images/portfolio2.jpg') }}" class="portfolio-popup">
-							<img src="{{ asset('fassets/images/portfolio2.jpg') }}" alt="portfolio-image">
-							<div class="image-overlay"></div>
-							<div class="image-caption">
-								<h4>Smooth Flower</h4>
-								<span>Branding</span>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="2">
-					<div class="content-image">
-						<a href="{{ asset('fassets/images/portfolio3.jpg') }}" class="portfolio-popup">
-							<img src="{{ asset('fassets/images/portfolio3.jpg') }}" alt="portfolio-image">
-							<div class="image-overlay"></div>
-							<div class="image-caption">
-								<h4>Vintage Building</h4>
-								<span>Branding</span>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="3">
-					<div class="content-image">
-						<a href="{{ asset('fassets/images/portfolio4.jpg') }}" class="portfolio-popup">
-							<img src="{{ asset('fassets/images/portfolio4.jpg') }}" alt="portfolio-image">
-							<div class="image-overlay"></div>
-							<div class="image-caption">
-								<h4>Theo Digital</h4>
-								<span>Branding</span>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="2">
-					<div class="content-image">
-						<a href="{{ asset('fassets/images/portfolio5.jpg') }}" class="portfolio-popup">
-							<img src="{{ asset('fassets/images/portfolio5.jpg') }}" alt="portfolio-image">
-							<div class="image-overlay"></div>
-							<div class="image-caption">
-								<h4>Painted Wall</h4>
-								<span>Branding</span>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 filtr-item" data-category="1">
-					<div class="content-image">
-						<a href="{{ asset('fassets/images/portfolio6.jpg') }}" class="portfolio-popup">
-							<img src="{{ asset('fassets/images/portfolio6.jpg') }}" alt="portfolio-image">
-							<div class="image-overlay"></div>
-							<div class="image-caption">
-								<h4>Blue Lolipop</h4>
-								<span>Branding</span>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- end portfolio -->
-
-	<!-- services -->
-<!--
-	<div id="services" class="services section-bottom-only">
-		<div class="section-title">
-			<h5 class="title-top">Features</h5>
-     		<h3>Our The Best Services</h3> 
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-sm-12">
-					<div class="content">
-						<div class="serv-icon">
-							<i class="icon ion-logo-html5"></i>
-							<span class="clone-icon"><i class="icon ion-logo-html5"></i></span>
-						</div>
-						<h5>QR ID for Parent and Students</h5>
-						<p>QR code printed on the ID card can be used as Login credentials by this application.</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="content">
-						<div class="serv-icon">
-							<i class="icon ion-ios-phone-portrait"></i>
-							<span class="clone-icon"><i class="icon ion-ios-phone-portrait"></i></span>
-						</div>
-						<h5>E-Attendance</h5>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit deserunt</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="content">
-						<div class="serv-icon">
-							<i class="icon ion-ios-desktop"></i>
-							<span class="clone-icon"><i class="icon ion-ios-desktop"></i></span>
-						</div>
-						<h5>E-Results</h5>
-						<p>Results can be declared department-wise and can be viewed & downloaded for easier access.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 col-sm-12">
-					<div class="content">
-						<div class="serv-icon">
-							<i class="icon ion-ios-bulb"></i>
-							<span class="clone-icon"><i class="icon ion-ios-bulb"></i></span>
-						</div>
-						<h5>Result Analysis and Career Predictions</h5>
-						<p>Results or marks obtained by the student, the result will be analysed and favourable career will be predicted.</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="content">
-						<div class="serv-icon">
-							<i class="icon ion-ios-paper"></i>
-							<span class="clone-icon"><i class="icon ion-ios-paper"></i></span>
-						</div>
-						<h5>Fee Monitoring</h5>
-						<p>The Notifications and monitoring regarding the fee balance and paid fees will be provided in this module.</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-12">
-					<div class="content">
-						<div class="serv-icon">
-							<i class="icon ion-logo-wordpress"></i>
-							<span class="clone-icon"><i class="icon ion-logo-wordpress"></i></span>
-						</div>
-						<h5>Feedback</h5>
-						<p>Feedback and suggestions given by the students will be analyzed and reports can be generated for the teachers performance.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
--->
-	<!-- end services -->
-
-	<!-- words -->
-<!--
-	<div class="words-section section-bottom-only">
-		<div class="container">
-			<div class="content">
-				<div class="row">
-					<div class="col-md-8 col-sm-12 align-self-center">
-						<div class="words-wrap">
-							<h4>Let's work together on your</h4>
-							<h4>best project</h4>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-12 align-self-center">
-						<div class="button-wrap">
-							<button class="button">Contact Us</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
--->
-	<!-- end words -->
-
-	<!-- news -->
-<!--
-	<div id="news" class="news section-bottom-only">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-sm-12">
-					<div class="section-title section-title-left">
-						<h5 class="title-top">News</h5>
-						<h3>Latest Post</h3>
-						<div class="title-desc">
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam repellat nobis impedit, distinctio eius cupiditate doloribus labore sunt totam!</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<a href="">
-								<div class="content">
-									<img src="{{ asset('fassets/images/news1.jpg') }}" alt="news-image">
-									<h4>Graphic Design and Photography Workshop</h4>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque</p>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-6 col-sm-12">
-							<a href="">
-								<div class="content">
-									<img src="{{ asset('fassets/images/news2.jpg') }}" alt="news-image">
-									<h4>10 Best Website Design for Inspiration</h4>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
--->
-
-	<!-- end news -->
+	<!-- end features -->
 
 	<!-- contact -->
 	<div id="contact" class="contact section-bottom-only">
 		<div class="container">
 			<div class="section-title">
-				<h5 class="title-top">Contact Us</h5>
-				<h3>Let's Join Us</h3>
+				<h3 class="title-top">Connect With Us</h3>
+				<h6>We would love to repond to your queries </h6>
+                <h6>Feel free to get in touch with us</h6>
 			</div>
 			<div class="box-content">
-				<div class="row">
-					<div class="col-md-4 col-sm-12">
+				<div class="row" >
+					<div class="col-md-4 col-sm-12" id= col>
+                        <div id= "reach-us">
+                            <center><h4>Reach us</h4></center>
+                        </div>
 						<div class="content">
-							<h5>Address</h5>
-							<p>121 King Street, Melbourne Victoria 3000 Australia</p>
-							<h5>Phone</h5>
-							<p>+61 3 8376 6284</p>
-							<h5>Email</h5>
-							<p>support@example.com</p>
+							<center>
+								<h5>Address</h5>
+								<p>Plot No. 2 & 3, Sector - 16, Near Thana Naka, Khandagao, New Panvel, Navi Mumbai, Maharashtra 410206</p>
+								<h5>Phone</h5>
+								<p>022 2748 1247</p>
+								<h5>Email</h5>
+								<p>aiktc.newpanvel@aiktc.ac.in</p>
+							</center>
+
 						</div>
 					</div>
 					<div class="col-md-8 col-sm-12">
 						<div class="content-right">
 							<form action="contact-form.php" class="contact-form" id="contact-form" method="post">
+                                <div id= "send-us">
+                                    <h4>Send us a message</h4>
+                                </div>
 								<div class="row">
 									<div class="col">
 										<div id="first-name-field">
@@ -446,7 +193,7 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="content">
-						<div class="brand"><img src="{{ asset('fassets/images/logo.png') }}" alt=""></div>
+						<div class="brand"><img src="{{ asset('fassets/images/white-logo.png') }}" alt=""></div>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, accusamus.</p>
 					</div>
 				</div>
