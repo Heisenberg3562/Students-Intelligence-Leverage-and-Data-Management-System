@@ -79,15 +79,15 @@
                     <div class="row align-items-center">
                         <div class="col-auto">
                             <div id="status-round-3" class="chart-shadow st-cir-chart" >
-                                <h5>33%</h5>
+                                <h5>75%</h5>
                             </div>
                         </div>
                         <div class="col text-center">
-                            <h3 class="fw-700 mb-5">2/6</h3>
-                            <h6 class="mb-0">Timely Submissions of Tasks</h6>
+                            <h3 class="fw-700 mb-5">8.46</h3>
+                            <h6 class="mb-0">CGPA of all the Semesters</h6>
                         </div>
                     </div>
-                    <span class="st-bt-lbl">33</span>
+                    <span class="st-bt-lbl">75</span>
                 </div>
             </div>
         </div>
@@ -129,6 +129,43 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-12 col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{ __('Semester Results')}}</h3>
+                </div>
+                <div class="card-block text-center">
+                    <div id="lineChart_area" class="chart-shadow "></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>{{ __('Skill Set')}}</h3>
+                </div>
+                <div class="card-block chart-shadow">
+                    <div id="skills_chart">
+                        <h6 class="mt-30">{{ __('Wordpress')}} <span class="pull-right">80%</span></h6>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">50% Complete</span> </div>
+                    </div>
+                    <h6 class="mt-30">{{ __('HTML 5')}} <span class="pull-right">90%</span></h6>
+                    <div class="progress  progress-sm">
+                        <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;"> <span class="sr-only">50% Complete</span> </div>
+                    </div>
+                    <h6 class="mt-30">{{ __('jQuery')}} <span class="pull-right">50%</span></h6>
+                    <div class="progress  progress-sm">
+                        <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%;"> <span class="sr-only">50% Complete</span> </div>
+                    </div>
+                    <h6 class="mt-30">{{ __('Photoshop')}} <span class="pull-right">70%</span></h6>
+                    <div class="progress  progress-sm">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%;"> <span class="sr-only">50% Complete</span> </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-xl-4 col-md-12">
             <div class="card proj-t-card">
                 <div class="card-body">
@@ -137,8 +174,8 @@
                             <i class="far fa-calendar-check text-red f-30"></i>
                         </div>
                         <div class="col pl-0">
-                            <h6 class="mb-5">Competitions Participated</h6>
-                            <h6 class="mb-0 text-red">Hackathons, Quizzes, etc</h6>
+                            <h6 class="mb-5">Timely Submissions</h6>
+                            <h6 class="mb-0 text-red">Assignments</h6>
                         </div>
                     </div>
                     <div class="row align-items-center text-center">
@@ -146,9 +183,9 @@
                             <h6 class="mb-0">This semester</h6></div>
                         <div class="col"><i class="fas fa-exchange-alt text-red f-18"></i></div>
                         <div class="col">
-                            <h6 class="mb-0">5</h6></div>
+                            <h6 class="mb-0">2/5</h6></div>
                     </div>
-                    <h6 class="pt-badge bg-red">53%</h6>
+                    <h6 class="pt-badge bg-red">40%</h6>
                 </div>
             </div>
         </div>
@@ -286,5 +323,7 @@
         <script src="{{ asset('plugins/ammap3/ammap/ammap.js') }}"></script>
         <script src="{{ asset('plugins/ammap3/ammap/maps/js/usaLow.js') }}"></script>
         <script src="{{ asset('js/chart-amcharts.js') }}"></script>
+        <script src="{{ asset('plugins/chartist/dist/chartist.min.js') }}"></script>
+        <script src="{{ asset('js/chart-chartist.js') }}"></script>
     @endpush
 @endsection
