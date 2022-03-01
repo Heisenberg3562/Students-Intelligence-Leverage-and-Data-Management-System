@@ -1,4 +1,4 @@
-@extends('layouts.main') 
+@extends('layouts.main')
 
 @section('content')
     <!-- push external head elements to head -->
@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="{{ asset('plugins/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
     @endpush
 
-    
+
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -144,6 +144,7 @@
                     </div>
                 </div>
             </div>
+            <!--Donut Chart-->
             <div class="col-md-4">
                 <div class="card card-422">
                     <div class="card-header"><h3>Donut chart</h3></div>
@@ -153,7 +154,7 @@
                 </div>
             </div>
         </div>
-
+        <!--Recent Chat-->
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
@@ -276,7 +277,7 @@
                                     <div class="day-name">Monday</div>
                                     <div class="month">February 2018</div>
                                 </div>
-                            </div>                                
+                            </div>
                         </div>
                         <ul>
                             <li>
@@ -654,7 +655,7 @@
         </div>
     </div>
     <!-- push external js -->
-    @push('script') 
+    @push('script')
         <script src="{{ asset('plugins/DataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('js/datatables.js') }}"></script>
         <script src="{{ asset('plugins/jvectormap/jquery-jvectormap.min.js') }}"></script>

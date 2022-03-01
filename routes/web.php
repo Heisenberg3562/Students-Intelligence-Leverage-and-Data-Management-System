@@ -50,6 +50,10 @@ Route::group(['middleware' => 'auth'], function(){
 		return view('pages.dashboard');
 	})->name('dashboard');
 
+    Route::get('student/dashboard', function () {
+		return view('pages.studentdashboard');
+	})->name('studentdashboard');
+
 	//only those have manage_user permission will get access
 	Route::group(['middleware' => 'can:manage_user'], function(){
 	    Route::get('/users', [UserController::class,'index']);
