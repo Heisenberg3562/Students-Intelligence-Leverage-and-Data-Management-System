@@ -36,7 +36,7 @@ $(document).ready(function() {
         "type": "serial",
         "theme": "light",
         "dataDateFormat": "YYYY-MM-DD",
-        "precision": 2,
+        "precision": 0,
         "valueAxes": [{
             "id": "v1",
             "fontSize": 0,
@@ -46,7 +46,7 @@ $(document).ready(function() {
             "position": "left",
             "autoGridCount": false,
             "labelFunction": function(value) {
-                return "$" + Math.round(value) + "M";
+                return "" + value + " Students";
             }
         }],
         "graphs": [{
@@ -54,36 +54,24 @@ $(document).ready(function() {
             "valueAxis": "v1",
             "lineColor": "#2ed8b6",
             "fillColors": "#2ed8b6",
-            "fillAlphas": 0.3,
-            "type": "column",
-            "title": "Actual Sales",
-            "valueField": "sales2",
-            "columnWidth": 0.5,
-            "legendValueText": "$[[value]]M",
-            "balloonText": "[[title]]<br /><b style='font-size: 130%'>$[[value]]M</b>"
-        }, {
-            "id": "g4",
-            "valueAxis": "v1",
-            "lineColor": "#2ed8b6",
-            "fillColors": "#2ed8b6",
             "fillAlphas": 1,
             "type": "column",
-            "title": "Target Sales",
-            "valueField": "sales1",
+            "title": "Placed",
+            "valueField": "sales2",
             "columnWidth": 0.5,
-            "legendValueText": "$[[value]]M",
-            "balloonText": "[[title]]<br /><b style='font-size: 130%'>$[[value]]M</b>"
+            "legendValueText": "[[value]]",
+            "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]] Students</b>"
         }],
         "chartCursor": {
             "pan": true,
             "valueLineEnabled": true,
-            "valueLineBalloonEnabled": true,
+            "valueLineBalloonEnabled": false,
             "cursorAlpha": 0,
             "valueLineAlpha": 0.2
         },
         "categoryField": "date",
         "categoryAxis": {
-            "parseDates": true,
+            "parseDates": false,
             "axisAlpha": 0,
             "lineAlpha": 0,
             "gridAlpha": 0,
@@ -94,28 +82,23 @@ $(document).ready(function() {
             "shadowAlpha": 0
         },
         "export": {
-            "enabled": true
+            "enabled": false
         },
         "dataProvider": [{
-            "date": "2013-01-16",
-            "sales1": 5,
-            "sales2": 8
+            "date": "2017",
+            "sales2": 20
         }, {
-            "date": "2013-01-17",
-            "sales1": 4,
-            "sales2": 6
+            "date": "2018",
+            "sales2": 26
         }, {
-            "date": "2013-01-18",
-            "sales1": 5,
-            "sales2": 2
+            "date": "2019",
+            "sales2": 21
         }, {
-            "date": "2013-01-19",
-            "sales1": 8,
-            "sales2": 9
+            "date": "2020",
+            "sales2": 29
         }, {
-            "date": "2013-01-20",
-            "sales1": 9,
-            "sales2": 6
+            "date": "2021",
+            "sales2": 36
         }]
     });
     var chart = AmCharts.makeChart("smoothed_line_chart", {

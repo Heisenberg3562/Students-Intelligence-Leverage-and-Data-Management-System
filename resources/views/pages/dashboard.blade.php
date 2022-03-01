@@ -1,4 +1,4 @@
-@extends('layouts.main') 
+@extends('layouts.main')
 @section('title', 'Dashboard')
 @section('content')
     <!-- push external head elements to head -->
@@ -362,11 +362,11 @@
         <script src="{{ asset('plugins/amcharts/amcharts.js') }}"></script>
         <script src="{{ asset('plugins/amcharts/serial.js') }}"></script>
         <script src="{{ asset('plugins/amcharts/themes/light.js') }}"></script>
-       
-        
+
+
         <script src="{{ asset('js/widget-statistic.js') }}"></script>
         <script src="{{ asset('js/widget-data.js') }}"></script>
         <script src="{{ asset('js/dashboard-charts.js') }}"></script>
-        
+
     @endpush
 @endsection

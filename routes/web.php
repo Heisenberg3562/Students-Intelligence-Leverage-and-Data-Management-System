@@ -54,8 +54,12 @@ Route::group(['middleware' => 'auth'], function(){
 	})->name('dashboard');
 
     Route::get('student/dashboard', function () {
-		return view('pages.studentdashboard');
+		return view('admin.studentdashboard');
 	})->name('studentdashboard');
+
+    Route::get('admin/dashboard', function () {
+		return view('admin.admindashboard');
+	})->name('admindashboard');
 
 	//only those have manage_user permission will get access
 	Route::group(['middleware' => 'can:manage_user'], function(){
