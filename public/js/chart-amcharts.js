@@ -350,24 +350,24 @@ $(document).ready(function() {
             "axisThickness": 1,
             "axisAlpha": 0.2,
             "tickAlpha": 0.2,
-            "valueInterval": 20,
+            "valueInterval": 10,
             "bands": [{
-                "color": "#84b761",
-                "endValue": 90,
+                "color": "#cc4748",
+                "endValue": 60,
                 "startValue": 0
             }, {
                 "color": "#fdd400",
-                "endValue": 130,
-                "startValue": 90
+                "endValue": 75,
+                "startValue": 60
             }, {
-                "color": "#cc4748",
-                "endValue": 220,
+                "color": "#84b761",
+                "endValue": 100,
                 "innerRadius": "95%",
-                "startValue": 130
+                "startValue": 75
             }],
             "bottomText": "0 km/h",
             "bottomTextYOffset": -20,
-            "endValue": 220
+            "endValue": 100
         }],
         "arrows": [{}],
         "export": {
@@ -377,13 +377,13 @@ $(document).ready(function() {
     setInterval(randomValue, 2000);
     // set random value
     function randomValue() {
-        var value = Math.round(Math.random() * 200);
+        var value = Math.round(Math.random() * 100);
         if (gaugeChart) {
             if (gaugeChart.arrows) {
                 if (gaugeChart.arrows[0]) {
                     if (gaugeChart.arrows[0].setValue) {
-                        gaugeChart.arrows[0].setValue(value);
-                        gaugeChart.axes[0].setBottomText(value + " km/h");
+                        gaugeChart.arrows[0].setValue(79);
+                        gaugeChart.axes[0].setBottomText(79 + " %");
                     }
                 }
             }
@@ -416,23 +416,9 @@ $(document).ready(function() {
             "hideBulletsCount": 50,
             "lineThickness": 3,
             "lineColor": "#2ed8b6",
-            "title": "Market Days",
+            "title": "Attendence",
             "useLineColorForBulletBorder": true,
-            "valueField": "market1",
-            "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
-        }, {
-            "id": "g2",
-            "valueAxis": "v2",
-            "bullet": "round",
-            "bulletBorderAlpha": 1,
-            "bulletColor": "#FFFFFF",
-            "bulletSize": 8,
-            "hideBulletsCount": 50,
-            "lineThickness": 3,
-            "lineColor": "#e95753",
-            "title": "Market Days ALL",
-            "useLineColorForBulletBorder": true,
-            "valueField": "market2",
+            "valueField": "attendence",
             "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]</b>"
         }],
         "chartCursor": {
@@ -457,41 +443,32 @@ $(document).ready(function() {
             "shadowAlpha": 0
         },
         "dataProvider": [{
-            "date": "2013-01-16",
-            "market1": 71,
-            "market2": 75
+            "date": "2022-01-15",
+            "attendence": 71,
         }, {
-            "date": "2013-01-17",
-            "market1": 80,
-            "market2": 84
+            "date": "2022-01-31",
+            "attendence": 80,
         }, {
-            "date": "2013-01-18",
-            "market1": 78,
-            "market2": 83
+            "date": "2022-02-15",
+            "attendence": 78,
         }, {
-            "date": "2013-01-19",
-            "market1": 85,
-            "market2": 88
+            "date": "2022-02-28",
+            "attendence": 85,
         }, {
-            "date": "2013-01-20",
-            "market1": 87,
-            "market2": 85
+            "date": "2022-03-15",
+            "attendence": 87,
         }, {
-            "date": "2013-01-21",
-            "market1": 97,
-            "market2": 88
+            "date": "2022-03-31",
+            "attendence": 97,
         }, {
-            "date": "2013-01-22",
-            "market1": 93,
-            "market2": 88
+            "date": "2022-04-15",
+            "attendence": 93,
         }, {
-            "date": "2013-01-23",
-            "market1": 85,
-            "market2": 80
+            "date": "2022-04-30",
+            "attendence": 85,
         }, {
-            "date": "2013-01-24",
-            "market1": 90,
-            "market2": 85
+            "date": "2022-05-15",
+            "attendence": 90,
         }]
     });
     var map = AmCharts.makeChart("allocation-map", {
