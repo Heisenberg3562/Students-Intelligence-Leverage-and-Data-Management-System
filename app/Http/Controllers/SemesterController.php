@@ -68,13 +68,19 @@ class SemesterController extends Controller
         return $html;
     }
 
-    public function getCourses($id,Request $request)
+    public function getCourses($id)
     {
 //        dd("Hello");
-        Log::useDailyFiles(storage_path().'/logs/debug.log');
-        Log::info("Hello");
-        $data  = DB::table('semester_has_courses')->where('semester_id',$_GET['semester'])->get();
-
+//        Log::useDailyFiles(storage_path().'/logs/debug.log');
+//        Log::channel("single")->info("Hello");
+//        Log::info('message');
+//        error_log('message here.');
+//        Log::build([
+//            'driver' => 'single',
+//            'path' => storage_path('logs/custom.log'),
+//        ])->info('Something happened!');
+        $data  = DB::table('semester_has_courses')->where('semester_id',$_GET('semester'))->get();
+//        dd($data);
         return Datatables::of($data)
             ->addColumn('courses', function($data){
                 return $data->course_id;

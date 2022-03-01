@@ -14,7 +14,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500;700&family=Merriweather:wght@300;500;700&family=PT+Sans&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;500;700&family=Merriweather:wght@300;500;700&family=PT+Sans&display=swap" rel="stylesheet">
 
     <!-- end new font -->
 
@@ -32,7 +32,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top">
 		<div class="container">
-			<a href="index.blade.php" class="navbar-brand"><img src="{{ asset('fassets/images/logo.png') }}" alt=""></a>
+			<a href="/" class="navbar-brand"><img src="{{ asset('img/sildms_logo_black.png') }}" alt=""></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="icon ion-ios-menu"></i>
 			</button>
@@ -62,7 +62,11 @@
 						<h2><span class="color-highlight">Student Intelligence</span> <span class="color-highlight1">Leverage and</span></h2>
 						<h2><span class="color-highlight1">Data Management </span><span class="color-highlight">System</span></h2>
 						<ul>
+<<<<<<< HEAD
 							<li><a href="" class="button">Login</a></li>
+=======
+							<li><a href="{{ url('login') }}" class="button">Login</a></li>
+>>>>>>> 66622d909755a57ee4c63de04cfb6c36f0f847c8
 							<li><a href="" class="button button-secondary">Sign up</a></li>
 						</ul>
 					</div>

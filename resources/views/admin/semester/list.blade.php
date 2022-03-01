@@ -87,7 +87,7 @@
             <div class="col-md-12">
                 <div class="card p-3">
                     <div class="card-body">
-                        <table id="semester_table" class="table">
+                        <table id="course_table" class="table">
                             <thead>
                                 <tr>
 {{--                                    <th>{{ __('Batch')}}</th>--}}

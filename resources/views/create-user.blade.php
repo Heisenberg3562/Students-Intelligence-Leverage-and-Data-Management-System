@@ -1,12 +1,13 @@
-@extends('layouts.main') 
+@extends('layouts.main')
 @section('title', 'Add User')
 @section('content')
     <!-- push external head elements to head -->
     @push('head')
         <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/yearpicker.css') }}">
     @endpush
 
-    
+
     <div class="container-fluid">
     	<div class="page-header">
             <div class="row align-items-end">
@@ -49,7 +50,7 @@
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
-                                        <label for="name">{{ __('Username')}}<span class="text-red">*</span></label>
+                                        <label for="name">{{ __('Name')}}<span class="text-red">*</span></label>
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="" placeholder="Enter user name" required>
                                         <div class="help-block with-errors"></div>
 
@@ -60,17 +61,136 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="rollno">{{ __('Roll Number / Prof. Id')}}<span class="text-red">*</span></label>
+                                        <input id="rollno" type="text" class="form-control @error('rollno') is-invalid @enderror" name="rollno" value="" placeholder="Enter Roll Number / Prof. Id" required>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('rollno')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
                                         <label for="email">{{ __('Email')}}<span class="text-red">*</span></label>
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter email address" required>
                                         <div class="help-block with-errors" ></div>
 
                                         @error('email')
-                                            <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                   
+                                    <div class="form-group">
+                                        <label for="email2">{{ __('Secondary Email')}}<span class="text-red">*</span></label>
+                                        <input id="email2" type="email" class="form-control @error('email2') is-invalid @enderror" name="email2" value="" placeholder="Enter Secondary Email" required>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('email2')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">{{ __('Phone')}}<span class="text-red">*</span></label>
+                                        <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="" placeholder="Excluding +91" required>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">{{ __('Address')}}<span class="text-red">*</span></label>
+                                        <textarea id="address" required class="form-control @error('address') is-invalid @enderror" name="address" placeholder="Home address" rows="4"></textarea>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="branch">{{ __('Branch')}}<span class="text-red">*</span></label>
+                                        {!! Form::select('branch', $branches, null,[ 'class'=>'form-control select2']) !!}
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('branch')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gender">{{ __('Gender')}}<span class="text-red">*</span></label>
+                                        <select class="form-control select2" name="gender">
+                                            <option value="1">{{ __('Male')}}</option>
+                                            <option value="0">{{ __('Female')}}</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="yos">{{ __('Year of study')}}<span class="text-red">*</span></label>
+                                        <select class="form-control select2" name="yos">
+                                            <option value="1">{{ __('First Year')}}</option>
+                                            <option value="2">{{ __('Second Year')}}</option>
+                                            <option value="3">{{ __('Third Year')}}</option>
+                                            <option value="4">{{ __('Fourth Year')}}</option>
+                                            <option value="5">{{ __('Fifth Year')}}</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('yos')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dob">{{ __('Date of Birth')}}<span class="text-red">*</span></label>
+                                        <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" required>
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('dob')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cursem">{{ __('Current Semester')}}</label>
+                                        <input id="cursem" type="number" class="form-control @error('cursem') is-invalid @enderror" name="cursem" value="" placeholder="ex. 8">
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('cursem')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="batchyear">{{ __('Batch Year')}}</label>
+                                        <input id="batchyear" type="text" class="form-control yearpicker @error('batchyear') is-invalid @enderror" name="batchyear">
+                                        <div class="help-block with-errors"></div>
+
+                                        @error('batchyear')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="password">{{ __('Password')}}<span class="text-red">*</span></label>
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter password" required>
@@ -87,11 +207,11 @@
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Retype password" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                    
-                                    
-                                    
-                                    
-                                
+
+
+
+
+
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Assign role & view role permisions -->
@@ -113,7 +233,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                         </form>
                     </div>
                 </div>
@@ -121,9 +241,14 @@
         </div>
     </div>
     <!-- push external js -->
-    @push('script') 
+    @push('script')
         <script src="{{ asset('plugins/select2/dist/js/select2.min.js') }}"></script>
          <!--get role wise permissiom ajax script-->
         <script src="{{ asset('js/get-role.js') }}"></script>
+        <script src="{{ asset('js/yearpicker.js') }}"></script>
+        <script>
+            $('.yearpicker').yearpicker();
+
+        </script>
     @endpush
 @endsection

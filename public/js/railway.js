@@ -1,13 +1,12 @@
 (function($) {
 'use strict';
-    // Semester table
+    // Branch table
     $(document).ready(function()
     {
-        // console.log(config.semester);
         var searchable = [];
         var selectable = [];
 
-        var dTable = $('#course_table').DataTable({
+        var dTable = $('#branch_table').DataTable({
 
             order: [],
             lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -23,26 +22,23 @@
             pagingType: "full_numbers",
             dom: "<'row'<'col-sm-2'l><'col-sm-7 text-center'B><'col-sm-3'f>>tipr",
             ajax: {
-                url: 'get-courses',
+                url: 'railway/get-list',
                 type: "get",
-                data: { semester: config.semester },
-                headers: {
-                      'X-CSRF-TOKEN': config.token
-                }
+                // headers: {
+                //       'X-CSRF-TOKEN': token
+                // }
             },
             columns: [
-                // {data:'batch', name: 'batch'},
-                // {data:'number', name: 'number'},
-                // {data:'branches', name: 'branches'},
-                {data:'courses', name: 'courses'},
-                {data:'prof', name: 'prof'},
+                {data:'date', name: 'date'},
+                {data:'class', name: 'class'},
+                {data:'period', name: 'period'},
                 {data:'action', name: 'action', orderable:false}
             ],
             buttons: [
                 {
                     extend: 'copy',
                     className: 'btn-sm btn-info',
-                    title: 'Semesters',
+                    title: 'Branches',
                     header: false,
                     footer: true,
                     exportOptions: {
@@ -52,7 +48,7 @@
                 {
                     extend: 'csv',
                     className: 'btn-sm btn-success',
-                    title: 'Semesters',
+                    title: 'Branches',
                     header: false,
                     footer: true,
                     exportOptions: {
@@ -62,7 +58,7 @@
                 {
                     extend: 'excel',
                     className: 'btn-sm btn-warning',
-                    title: 'Semesters',
+                    title: 'Branches',
                     header: false,
                     footer: true,
                     exportOptions: {
@@ -72,7 +68,7 @@
                 {
                     extend: 'pdf',
                     className: 'btn-sm btn-primary',
-                    title: 'Semesters',
+                    title: 'Branches',
                     pageSize: 'A2',
                     header: false,
                     footer: true,
@@ -83,7 +79,7 @@
                 {
                     extend: 'print',
                     className: 'btn-sm btn-default',
-                    title: 'Semesters',
+                    title: 'Branches',
                     // orientation:'landscape',
                     pageSize: 'A2',
                     header: true,
@@ -96,12 +92,12 @@
                 }
             ],
             /*
-             * create an element id to change Semester names, while inline datatable updated
+             * create an element id to change Branch names, while inline datatable updated
             */
             createdRow: function ( row, data, index ) {
                 var td_index = data.DT_RowIndex;
                 $('td', row).eq(0).attr('id', 'perm_'+data.id);
-                $('td', row).eq(0).attr('title', 'Click to edit Semester');
+                $('td', row).eq(0).attr('title', 'Click to edit Branch');
              },
             initComplete: function () {
                 var api =  this.api();
@@ -143,12 +139,12 @@
 
 
         // datatable inline cell edit
-        // only those have manage_semester Semester will get access
+        // only those have manage_branch Branch will get access
         // @can is a blade syntax
         // dTable.MakeCellsEditable({
-        //     "onUpdate": updateSemester, //call function to update in backend
+        //     "onUpdate": updateBranch, //call function to update in backend
         //     "inputCss":'form-control',
-        //     "columns": [],
+        //     "columns": [0,1],
         //     "confirmationButton": { // could also be true
         //         "confirmCss": 'btn btn-success',
         //         "cancelCss": 'btn btn-danger'
@@ -158,33 +154,25 @@
         //             "column": 0,
         //             "type": "text",
         //             "options": null
-        //         },
-        //         {
-        //             "column": 2,
-        //             "type": "number",
-        //             "options": null
         //         }
         //
         //     ]
         // });
-        //end of Semester area
+        //end of Branch area
     });
     // datatable inline cell edit callback function
-    // function updateSemester (updatedCell, updatedRow, oldValue)
-    // {
+    // function updateBranch (updatedCell, updatedRow, oldValue){
     //     var id = updatedRow.data().id;
     //     var name = updatedRow.data().name;
     //     var code = updatedRow.data().code;
-    //     var credits = updatedRow.data().credits;
     //     $.ajax({
-    //         url: "semester/update",
+    //         url: "branch/update",
     //         method: "GET",
     //         dataType: 'json',
     //         data: {
     //             'id' : id,
     //             'name' : name,
     //             'code' : code,
-    //             'credits' : credits,
     //         },/*
     //         headers: {
     //             'X-CSRF-TOKEN': token
