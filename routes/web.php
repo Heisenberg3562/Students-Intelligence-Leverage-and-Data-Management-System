@@ -3,6 +3,7 @@
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MarksController;
+use App\Http\Controllers\RailwayController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StreamController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::group(['middleware' => 'auth'], function(){
 	// logout route
 	Route::get('/logout', [LoginController::class,'logout']);
 	Route::get('/clear-cache', [HomeController::class,'clearCache']);
+    Route::get('/profile', [UserController::class,'myProfile']);
+    Route::post('/profile/edit', [UserController::class,'updateMyProfile'])->name('update-profile');
 
 	// dashboard route
 	Route::get('/dashboard', function () {
@@ -60,6 +63,9 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::post('/user/update', [UserController::class,'update']);
 		Route::get('/user/delete/{id}', [UserController::class,'delete']);
 	});
+    Route::group(['middleware' => 'can:manage_profile'], function(){
+        Route::get('/profile/{id}', [UserController::class,'profile']);
+    });
 
 	//only those have manage_role permission will get access
 	Route::group(['middleware' => 'can:manage_role|manage_user'], function(){
@@ -125,6 +131,19 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/result/delete/{id}', [MarksController::class,'delete']);
     });
 
+    Route::get('/railway', [RailwayController::class,'index']);
+    Route::get('/railway/get-list', [RailwayController::class,'getRailwayList']);
+    Route::post('/railway/create', [RailwayController::class,'create']);
+    Route::get('/railway/update', [RailwayController::class,'update']);
+    Route::get('/railway/delete/{id}', [RailwayController::class,'delete']);
+    Route::group(['middleware' => 'can:manage_railway'], function(){
+        Route::get('/railway/verify', [RailwayController::class,'checkIndex']);
+        Route::get('/railway/view/{id}', [RailwayController::class,'viewIndex']);
+        Route::get('/railway/accept/{id}', [RailwayController::class,'acceptApplication']);
+        Route::get('/railway/verify/get-active-list', [RailwayController::class,'getActiveRailwayApplicationsList']);
+        Route::get('/railway/verify/get-accepted-list', [RailwayController::class,'getAcceptedRailwayApplicationsList']);
+    });
+
 	// get permissions
 	Route::get('get-role-permissions-badge', [PermissionController::class,'getPermissionBadgeByRole']);
 
@@ -156,7 +175,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/layouts', function () { return view('pages.layouts'); });
 
 	Route::get('/navbar', function () { return view('pages.navbar'); });
-	Route::get('/profile', function () { return view('pages.profile'); });
+	Route::get('/profiles', function () { return view('pages.profile'); });
 	Route::get('/project', function () { return view('pages.project'); });
 	Route::get('/view', function () { return view('pages.view'); });
 
