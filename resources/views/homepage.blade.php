@@ -62,7 +62,7 @@
 						<h2><span class="color-highlight">Student Intelligence</span> <span class="color-highlight1">Leverage and</span></h2>
 						<h2><span class="color-highlight1">Data Management </span><span class="color-highlight">System</span></h2>
 						<ul>
-							<li><a href="/login" class="button">Login</a></li>
+							<li><a href="" class="button">Login</a></li>
 							<li><a href="" class="button button-secondary">Sign up</a></li>
 						</ul>
 					</div>
@@ -87,28 +87,28 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="content">
-						<i class="icon ion-ios-chatboxes"></i>
+                        <div class= "ion1"><ion-icon name="qr-code-sharp" ></ion-icon></div><br>
 						<h5>QR ID for Parent and Students</h5>
 						<p>QR code printed on the ID card can be used as Login credentials by this application.</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 align-self-end">
 					<div class="content">
-						<i class="icon ion-ios-cash"></i>
+						<div><ion-icon name="reader-sharp" ></ion-icon></div><br>
 						<h5>E-Results</h5>
 						<p>Results can be declared department-wise and can be viewed & downloaded for easier access.</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="content">
-						<i class="icon ion-ios-search"></i>
+						<div class= "ion1"><ion-icon name="search-sharp"></ion-icon></div><br>
 						<h5>Result Analysis and Career Predictions</h5>
 						<p>Results or marks obtained by the student, the result will be analysed and favourable career will be predicted.</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 align-self-end">
 					<div class="content">
-						<i class="icon ion-ios-checkmark-circle"></i>
+						<div><ion-icon name="checkmark-done-circle-sharp"></ion-icon></div><br>
 						<h5>Feedback</h5>
 						<p>Feedback and suggestions given by the students will be analyzed and reports can be generated for the teachers performance.</p>
 					</div>
@@ -131,18 +131,15 @@
 				<div class="row" >
 					<div class="col-md-4 col-sm-12" id= col>
                         <div id= "reach-us">
-                            <center><h4>Reach us</h4></center>
+                            <h4>Reach us</h4>
                         </div>
 						<div class="content">
-							<center>
-								<h5>Address</h5>
-								<p>Plot No. 2 & 3, Sector - 16, Near Thana Naka, Khandagao, New Panvel, Navi Mumbai, Maharashtra 410206</p>
-								<h5>Phone</h5>
-								<p>022 2748 1247</p>
-								<h5>Email</h5>
-								<p>aiktc.newpanvel@aiktc.ac.in</p>
-							</center>
-
+							<h5>Address</h5>
+							<p>Plot No. 2 & 3, Sector - 16, Near Thana Naka, Khandagao, New Panvel, Navi Mumbai, Maharashtra 410206</p>
+							<h5>Phone</h5>
+							<p>022 2748 1247</p>
+							<h5>Email</h5>
+							<p>aiktc.newpanvel@aiktc.ac.in</p>
 						</div>
 					</div>
 					<div class="col-md-8 col-sm-12">
@@ -247,6 +244,8 @@
 	<script src="{{ asset('fassets/js/magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('fassets/js/contact-form.js') }}"></script>
 	<script src="{{ asset('fassets/js/main.js') }}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 </html>
