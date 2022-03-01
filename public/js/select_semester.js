@@ -7,7 +7,7 @@
         var searchable = [];
         var selectable = [];
 
-        var dTable = $('#semester_table').DataTable({
+        var dTable = $('#course_table').DataTable({
 
             order: [],
             lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -23,7 +23,7 @@
             pagingType: "full_numbers",
             dom: "<'row'<'col-sm-2'l><'col-sm-7 text-center'B><'col-sm-3'f>>tipr",
             ajax: {
-                url: 'semesters/get-courses/',
+                url: 'get-courses',
                 type: "get",
                 data: { semester: config.semester },
                 headers: {
@@ -145,57 +145,57 @@
         // datatable inline cell edit
         // only those have manage_semester Semester will get access
         // @can is a blade syntax
-        dTable.MakeCellsEditable({
-            "onUpdate": updateSemester, //call function to update in backend
-            "inputCss":'form-control',
-            "columns": [],
-            "confirmationButton": { // could also be true
-                "confirmCss": 'btn btn-success',
-                "cancelCss": 'btn btn-danger'
-            },
-            "inputTypes": [
-                {
-                    "column": 0,
-                    "type": "text",
-                    "options": null
-                },
-                {
-                    "column": 2,
-                    "type": "number",
-                    "options": null
-                }
-
-            ]
-        });
+        // dTable.MakeCellsEditable({
+        //     "onUpdate": updateSemester, //call function to update in backend
+        //     "inputCss":'form-control',
+        //     "columns": [],
+        //     "confirmationButton": { // could also be true
+        //         "confirmCss": 'btn btn-success',
+        //         "cancelCss": 'btn btn-danger'
+        //     },
+        //     "inputTypes": [
+        //         {
+        //             "column": 0,
+        //             "type": "text",
+        //             "options": null
+        //         },
+        //         {
+        //             "column": 2,
+        //             "type": "number",
+        //             "options": null
+        //         }
+        //
+        //     ]
+        // });
         //end of Semester area
     });
     // datatable inline cell edit callback function
-    function updateSemester (updatedCell, updatedRow, oldValue)
-    {
-        var id = updatedRow.data().id;
-        var name = updatedRow.data().name;
-        var code = updatedRow.data().code;
-        var credits = updatedRow.data().credits;
-        $.ajax({
-            url: "semester/update",
-            method: "GET",
-            dataType: 'json',
-            data: {
-                'id' : id,
-                'name' : name,
-                'code' : code,
-                'credits' : credits,
-            },/*
-            headers: {
-                'X-CSRF-TOKEN': token
-            },*/
-            success: function(data)
-            {
-                $('#perm'+updatedRow.data().id).text(data.name);
-                updatedRow.data().name = data.name;
-
-            }
-        });
-    }
+    // function updateSemester (updatedCell, updatedRow, oldValue)
+    // {
+    //     var id = updatedRow.data().id;
+    //     var name = updatedRow.data().name;
+    //     var code = updatedRow.data().code;
+    //     var credits = updatedRow.data().credits;
+    //     $.ajax({
+    //         url: "semester/update",
+    //         method: "GET",
+    //         dataType: 'json',
+    //         data: {
+    //             'id' : id,
+    //             'name' : name,
+    //             'code' : code,
+    //             'credits' : credits,
+    //         },/*
+    //         headers: {
+    //             'X-CSRF-TOKEN': token
+    //         },*/
+    //         success: function(data)
+    //         {
+    //             $('#perm'+updatedRow.data().id).text(data.name);
+    //             updatedRow.data().name = data.name;
+    //
+    //         }
+    //     });
+    // }
     $('select').select2();
 })(jQuery);

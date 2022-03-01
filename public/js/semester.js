@@ -5,6 +5,7 @@
     {
         var searchable = [];
         var selectable = [];
+        var token = $('#token').val();
 
         var dTable = $('#semester_table').DataTable({
 

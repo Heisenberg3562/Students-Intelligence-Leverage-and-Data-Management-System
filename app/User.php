@@ -18,7 +18,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','rollno',
+        'name',
+        'email',
+        'password',
+        'rollno',
+        'email2',
+        'branch_id',
+        'gender',
+        'year_of_study',
+        'dob',
+        'current_semester',
+        'batch_year',
+        'phone',
+        'address',
+        'bio',
     ];
 
     /**
@@ -42,6 +55,11 @@ class User extends Authenticatable
     public function marks()
     {
         return $this->hasMany(Marks::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
     }
 
     public function get_roles(){
