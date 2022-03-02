@@ -1,12 +1,13 @@
 (function($) {
 'use strict';
-    // Course table
+    // Semester table
     $(document).ready(function()
     {
+        // console.log(config.semester);
         var searchable = [];
         var selectable = [];
 
-        var dTable = $('#course_table').DataTable({
+        var dTable = $('#students_table').DataTable({
 
             order: [],
             lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -22,30 +23,36 @@
             pagingType: "full_numbers",
             dom: "<'row'<'col-sm-2'l><'col-sm-7 text-center'B><'col-sm-3'f>>tipr",
             ajax: {
-                url: 'course/get-list',
+                url: '/semester/'+config.semester+'/get-student-marks/'+config.course,
                 type: "get",
+                data: {
+                    semester: config.semester,
+                    course: config.course,
+                },
                 // headers: {
-                //       'X-CSRF-TOKEN': token
+                //       'X-CSRF-TOKEN': config.token
                 // }
             },
             columns: [
-                {data:'code', name: 'code'},
+                // {data:'batch', name: 'batch'},
+                // {data:'number', name: 'number'},
+                // {data:'branches', name: 'branches'},
+                {data:'rollno', name: 'rollno'},
                 {data:'name', name: 'name'},
-                {data:'credits', name: 'credits'},
                 {data:'ut1', name: 'ut1'},
                 {data:'ut2', name: 'ut2'},
+                {data:'average', name: 'average'},
                 {data:'ese', name: 'ese'},
                 {data:'tw', name: 'tw'},
                 {data:'oral', name: 'oral'},
                 {data:'oral_practical', name: 'oral_practical'},
-                {data:'branches', name: 'branches'},
-                {data:'action', name: 'action', orderable:false}
+                // {data:'action', name: 'action', orderable:false}
             ],
             buttons: [
                 {
                     extend: 'copy',
                     className: 'btn-sm btn-info',
-                    title: 'Courses',
+                    title: 'Semesters',
                     header: false,
                     footer: true,
                     exportOptions: {
@@ -55,7 +62,7 @@
                 {
                     extend: 'csv',
                     className: 'btn-sm btn-success',
-                    title: 'Courses',
+                    title: 'Semesters',
                     header: false,
                     footer: true,
                     exportOptions: {
@@ -65,7 +72,7 @@
                 {
                     extend: 'excel',
                     className: 'btn-sm btn-warning',
-                    title: 'Courses',
+                    title: 'Semesters',
                     header: false,
                     footer: true,
                     exportOptions: {
@@ -75,7 +82,7 @@
                 {
                     extend: 'pdf',
                     className: 'btn-sm btn-primary',
-                    title: 'Courses',
+                    title: 'Semesters',
                     pageSize: 'A2',
                     header: false,
                     footer: true,
@@ -86,7 +93,7 @@
                 {
                     extend: 'print',
                     className: 'btn-sm btn-default',
-                    title: 'Courses',
+                    title: 'Semesters',
                     // orientation:'landscape',
                     pageSize: 'A2',
                     header: true,
@@ -99,12 +106,12 @@
                 }
             ],
             /*
-             * create an element id to change Course names, while inline datatable updated
+             * create an element id to change Semester names, while inline datatable updated
             */
             createdRow: function ( row, data, index ) {
                 var td_index = data.DT_RowIndex;
                 $('td', row).eq(0).attr('id', 'perm_'+data.id);
-                $('td', row).eq(0).attr('title', 'Click to edit Course');
+                $('td', row).eq(0).attr('title', 'Click to edit Semester');
              },
             initComplete: function () {
                 var api =  this.api();
@@ -146,57 +153,95 @@
 
 
         // datatable inline cell edit
-        // only those have manage_course Course will get access
+        // only those have manage_semester Semester will get access
         // @can is a blade syntax
         dTable.MakeCellsEditable({
-            "onUpdate": updateCourse, //call function to update in backend
+            "onUpdate": updateResult, //call function to update in backend
             "inputCss":'form-control',
-            "columns": [0,1],
+            "columns": [2,3,5,6,7,8],
             "confirmationButton": { // could also be true
                 "confirmCss": 'btn btn-success',
                 "cancelCss": 'btn btn-danger'
             },
             "inputTypes": [
-                {
-                    "column": 0,
-                    "type": "text",
-                    "options": null
-                },
+                // {
+                //     "column": 1,
+                //     "type": "list",
+                //     "options": config.prof_list
+                //     //     [
+                //     //     { "value": "Beaty", "display": "Beaty" },
+                //     //     { "value": "Doe", "display": "Doe" },
+                //     //     { "value": "Dirt", "display": "Dirt" }
+                //     // ]
+                // },
                 {
                     "column": 2,
                     "type": "number",
                     "options": null
-                }
-
+                },
+                {
+                    "column": 3,
+                    "type": "number",
+                    "options": null
+                },
+                {
+                    "column": 5,
+                    "type": "number",
+                    "options": null
+                },
+                {
+                    "column": 6,
+                    "type": "number",
+                    "options": null
+                },
+                {
+                    "column": 7,
+                    "type": "number",
+                    "options": null
+                },
+                {
+                    "column": 8,
+                    "type": "number",
+                    "options": null
+                },
             ]
         });
-        //end of Course area
+        //end of Semester area
     });
     // datatable inline cell edit callback function
-    function updateCourse (updatedCell, updatedRow, oldValue)
+    function updateResult (updatedCell, updatedRow, oldValue)
     {
         var id = updatedRow.data().id;
-        var name = updatedRow.data().name;
-        var code = updatedRow.data().code;
-        var credits = updatedRow.data().credits;
+        var ut1 = updatedRow.data().ut1;
+        var ut2 = updatedRow.data().ut2;
+        var ese = updatedRow.data().ese;
+        var tw = updatedRow.data().tw;
+        var oral = updatedRow.data().oral;
+        var oral_practical = updatedRow.data().oral_practical;
+        // console.log(updatedRow.data());
+        // var prof = updatedRow.data().prof;
         $.ajax({
-            url: "course/update",
+            url: config.url,
             method: "GET",
             dataType: 'json',
             data: {
                 'id' : id,
-                'name' : name,
-                'code' : code,
-                'credits' : credits,
+                'ut1' : ut1,
+                'ut2' : ut2,
+                'ese' : ese,
+                'tw' : tw,
+                'oral' : oral,
+                'oral_practical' : oral_practical,
             },/*
             headers: {
                 'X-CSRF-TOKEN': token
             },*/
             success: function(data)
             {
-                $('#perm'+updatedRow.data().id).text(data.name);
-                updatedRow.data().name = data.name;
-
+                console.log(data);
+                // $('#perm'+updatedRow.data().id).text(data.prof);
+                // updatedRow.data().prof = data.prof;
+                // location.reload();
             }
         });
     }

@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name','code','credits','branch_id'
-    ];
+    protected $guarded = [];
     public $timestamps = false;
     public function branch()
     {

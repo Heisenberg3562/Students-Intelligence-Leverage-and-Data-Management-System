@@ -120,8 +120,12 @@
                     if(branchID){
                         $.ajax({
                             type:'GET',
-                            url:'{{ URL('semester/get-course-list') }}',
-                            data:'branch_id='+branchID,
+                            url:'/semester/get-course-list/'+branchID,
+                            // data:'branch_id='+branchID,
+                            // data: { branch_id: branchID },
+                            {{--headers: {--}}
+                            {{--    'X-CSRF-TOKEN': '{{ csrf_token() }}'--}}
+                            {{--},--}}
                             success:function(html){
                                 console.log(html);
                                 $('#courses').html(html);
@@ -135,8 +139,12 @@
                 if(branchID){
                     $.ajax({
                         type:'GET',
-                        url:'{{ URL('semester/get-course-list') }}',
-                        data:'branch_id='+branchID,
+                        url:'/semester/get-course-list/'+branchID,
+                        // data:'branch_id='+branchID,
+                        // data: { branch_id: branchID },
+                        {{--headers: {--}}
+                        {{--    'X-CSRF-TOKEN': '{{ csrf_token() }}'--}}
+                        {{--},--}}
                         success:function(html){
                             console.log(html);
                             $('#courses').html(html);

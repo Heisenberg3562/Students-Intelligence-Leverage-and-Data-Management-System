@@ -40,46 +40,46 @@
             <!-- end message area-->
             <!-- only those have manage_semester semester will get access -->
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card p-3">
-                    <div class="card-header"><h3>{{ __('View Courses')}}</h3></div>
-                    <div class="card-body">
-                        <table id="course_table" class="table">
-                            <thead>
-                                <tr>
+{{--        <div class="row">--}}
+{{--            <div class="col-md-12">--}}
+{{--                <div class="card p-3">--}}
+{{--                    <div class="card-header"><h3>{{ __('View Courses')}}</h3></div>--}}
+{{--                    <div class="card-body">--}}
+{{--                        <table id="course_table" class="table">--}}
+{{--                            <thead>--}}
+{{--                                <tr>--}}
 {{--                                    <th>{{ __('Batch')}}</th>--}}
 {{--                                    <th>{{ __('Number')}}</th>--}}
 {{--                                    <th>{{ __('Assigned Branch')}}</th>--}}
-                                    <th>{{ __('Assigned Courses')}}</th>
-                                    <th>{{ __('Assigned Professors')}}</th>
-                                    <th>{{ __('Action')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
+{{--                                    <th>{{ __('Assigned Courses')}}</th>--}}
+{{--                                    <th>{{ __('Assigned Professors')}}</th>--}}
+{{--                                    <th>{{ __('Action')}}</th>--}}
+{{--                                </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-md-12">--}}
+{{--                <div class="card">--}}
 {{--                    <div class="card-header"><h3>{{ __('Add Students')}}<small><a type="button" class="btn btn-primary float-right"><i class="fa fa-download"></i> {{ __('Download Template')}}</a></small></h3></div>--}}
-                    <div class="card-header"><h3 class="d-block w-100">Add Students<small class="float-right"><a href="{{ asset('sample/student_list.csv') }}" download type="button" class="btn btn-success float-right"><i class="fa fa-download"></i> {{ __('Download Template')}}</a></small></h3></div>
+{{--                    <div class="card-header"><h3 class="d-block w-100">Add Students<small class="float-right"><a href="{{ asset('sample/student_list.csv') }}" download type="button" class="btn btn-success float-right"><i class="fa fa-download"></i> {{ __('Download Template')}}</a></small></h3></div>--}}
 
-                    <div class="card-body">
-                        <form class="forms-sample" method="POST" action="{{url('semester/student/add')}}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="students">{{ __('Student')}}<span class="text-red">*</span></label>
-                                        {!! Form::select('students', $students, null,[ 'class'=>'form-control select2', 'id' => 'students']) !!}
-                                        <input type="hidden" id="semester_id" name="semester_id" value="{{ $semester->id }}">
-                                    </div>
-                                </div>
+{{--                    <div class="card-body">--}}
+{{--                        <form class="forms-sample" method="POST" action="{{url('semester/student/add')}}">--}}
+{{--                            @csrf--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-sm-4">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="students">{{ __('Student')}}<span class="text-red">*</span></label>--}}
+{{--                                        {!! Form::select('students', $students, null,[ 'class'=>'form-control select2', 'id' => 'students']) !!}--}}
+{{--                                        <input type="hidden" id="semester_id" name="semester_id" value="{{ $semester->id }}">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 {{--                                <div class="col-sm-1">--}}
 {{--                                    <div class="form-group">--}}
 {{--                                        <label for="number">{{ __('Number')}}<span class="text-red">*</span></label>--}}
@@ -99,29 +99,29 @@
 {{--                                        {!! Form::select('course[]', $courses, null,[ 'class'=>'form-control select2', 'multiple' => 'multiple', 'id' => 'courses']) !!}--}}
 {{--                                    </div>--}}
 {{--                                </div>--}}
-                                <div class="col-sm-1">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-rounded">{{ __('Save')}}</button>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>{{ __('Upload CSV')}}</label>
-                                        <input form="form1" type="file" name="csv[]" id="csv" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
-                                            <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-primary" type="button">{{ __('Upload')}}</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                                <div class="col-sm-1">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <button type="submit" class="btn btn-primary btn-rounded">{{ __('Save')}}</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-sm-4">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>{{ __('Upload CSV')}}</label>--}}
+{{--                                        <input form="form1" type="file" name="csv[]" id="csv" class="file-upload-default">--}}
+{{--                                        <div class="input-group col-xs-12">--}}
+{{--                                            <input type="text" class="form-control file-upload-info" placeholder="Upload Image">--}}
+{{--                                            <span class="input-group-append">--}}
+{{--                                                <button class="file-upload-browse btn btn-primary" type="button">{{ __('Upload')}}</button>--}}
+{{--                                            </span>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card p-3">
@@ -132,7 +132,13 @@
                             <tr>
                                 <th>{{ __('Roll No.')}}</th>
                                 <th>{{ __('Name')}}</th>
-                                <th>{{ __('Action')}}</th>
+                                <th>{{ __('UT1')}}</th>
+                                <th>{{ __('UT2')}}</th>
+                                <th>{{ __('Average')}}</th>
+                                <th>{{ __('ESE')}}</th>
+                                <th>{{ __('TW')}}</th>
+                                <th>{{ __('Oral')}}</th>
+                                <th>{{ __('Oral & Practical')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -152,17 +158,13 @@
     <script>
         var config = {};
         config.semester = "{{ $semester->id }}";
-        config.url = '{{ route('semester.prof.update') }}';
-        config.prof_list = [
-            @foreach($prof as $value)
-            { "value": {{$value->id}}, 'display': '{{$value->name}}' },
-            @endforeach
-        ];
+        config.course = "{{ $code }}";
+        config.url = '{{ route('semester.result.update') }}';
         config.token = "{{ csrf_token() }}";
     </script>
-    <script src="{{ asset('js/select_semester.js') }}"></script>
-    <script src="{{ asset('js/semester_students.js') }}"></script>
-    <script src="{{ asset('js/semester_students_upload.js') }}"></script>
+{{--    <script src="{{ asset('js/select_semester.js') }}"></script>--}}
+    <script src="{{ asset('js/semester_students_marks.js') }}"></script>
+{{--    <script src="{{ asset('js/semester_students_upload.js') }}"></script>--}}
 
 {{--        <script>--}}
 {{--            $(document).ready(function(){--}}
