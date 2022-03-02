@@ -400,9 +400,9 @@ class UserController extends Controller
                     }
                     DB::commit();
                 } catch (\Exception $e) {
-                    return response()->json([
-                        'message' => $e
-                    ]);
+//                    return response()->json([
+//                        'message' => $e
+//                    ]);
                     DB::rollBack();
                 }
             }
