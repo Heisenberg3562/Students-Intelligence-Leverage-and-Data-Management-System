@@ -132,13 +132,23 @@
                             <tr>
                                 <th>{{ __('Roll No.')}}</th>
                                 <th>{{ __('Name')}}</th>
+                                @if ($course->ut1 != null)
                                 <th>{{ __('UT1')}}</th>
                                 <th>{{ __('UT2')}}</th>
-                                <th>{{ __('Average')}}</th>
+                                <th>{{ __('IA')}}</th>
+                                @endif
+                                @if ($course->ese != null)
                                 <th>{{ __('ESE')}}</th>
+                                @endif
+                                @if ($course->tw != null)
                                 <th>{{ __('TW')}}</th>
+                                @endif
+                                @if ($course->oral != null)
                                 <th>{{ __('Oral')}}</th>
+                                @endif
+                                @if ($course->oral_practical != null)
                                 <th>{{ __('Oral & Practical')}}</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
@@ -161,6 +171,28 @@
         config.course = "{{ $code }}";
         config.url = '{{ route('semester.result.update') }}';
         config.token = "{{ csrf_token() }}";
+        config.columns = [
+            {data:'rollno', name: 'rollno'},
+            {data:'name', name: 'name'},
+            @if ($course->ut1 != null)
+            {data:'ut1', name: 'ut1'},
+            {data:'ut2', name: 'ut2'},
+            {data:'average', name: 'average'},
+            @endif
+            @if ($course->ese != null)
+            {data:'ese', name: 'ese'},
+            @endif
+            @if ($course->tw != null)
+            {data:'tw', name: 'tw'},
+            @endif
+            @if ($course->oral != null)
+            {data:'oral', name: 'oral'},
+            @endif
+            @if ($course->oral_practical != null)
+            {data:'oral_practical', name: 'oral_practical'},
+            @endif
+            // {data:'action', name: 'action', orderable:false}
+        ];
     </script>
 {{--    <script src="{{ asset('js/select_semester.js') }}"></script>--}}
     <script src="{{ asset('js/semester_students_marks.js') }}"></script>

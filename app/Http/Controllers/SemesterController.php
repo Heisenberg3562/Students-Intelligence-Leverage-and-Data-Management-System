@@ -287,8 +287,8 @@ class SemesterController extends Controller
                 try {
                     DB::beginTransaction();
                     $user = User::where('rollno',$importData[0])->get()->first();
-                    $courses = Course::whereIn('id',DB::table('semester_has_courses')->where('semester_id',$request->semester_id)->pluck('id'))->get();
-                    if (!Result::where('user_id', '=', $user->id)->exists()) {
+                    $courses = Course::whereIn('id',DB::table('semester_has_courses')->where('semester_id',$request->semester_id)->pluck('course_id'))->get();
+                    if (!Result::where('user_id', '=', $user->id)->where('semester_id',$request->semester_id)->exists()) {
                         foreach ($courses as $course){
                             $result = Result::create([
                                 'user_id' => $user->id,
@@ -335,9 +335,11 @@ class SemesterController extends Controller
             return redirect()->back()->withInput()->with('error', $validator->messages()->first());
         }
         try{
-            $courses = Course::whereIn('id',DB::table('semester_has_courses')->where('semester_id',$request->semester_id)->pluck('id'))->get();
+//            dd($request->semester_id);
+            $courses = Course::whereIn('id',DB::table('semester_has_courses')->where('semester_id',$request->semester_id)->pluck('course_id'))->get();
 //            dd($courses);
-            if (!Result::where('user_id', '=', $request->students)->exists()) {
+            if (!Result::where('user_id', '=', $request->students)->where('semester_id',$request->semester_id)->exists()) {
+//                dd($courses);
                 foreach ($courses as $course){
                     $result = Result::create([
                         'user_id' => $request->students,
@@ -434,7 +436,12 @@ class SemesterController extends Controller
                 $students = User::where('branch_id',$semester->branch_id)->get()->reject(function ($user, $key) {
                     return !$user->hasRole('Student');
                 })->pluck('name','id');
-                return view('admin.semester.course.index', compact('branches','courses','semester','prof','students','code'));
+//                $course_id = DB::table('semester_has_courses')->find($code)->course_id;
+                $course = Course::find(DB::table('semester_has_courses')->find($code)->course_id);
+//                $data = Result::where('semester_id',$id)
+//                    ->where('course_id',$course_id)
+//                    ->get();
+                return view('admin.semester.course.index', compact('branches','courses','semester','prof','students','code','course'));
             }else{
                 return redirect('404');
             }
@@ -447,10 +454,14 @@ class SemesterController extends Controller
 
     public function getStudentMarks($id,$code)
     {
-        $data  = Result::where('semester_id',$id)
-            ->where('course_id',$code)
+//        $d = DB::table('semester_has_courses')->find($code);
+//        dd($id);
+        $course_id = DB::table('semester_has_courses')->find($code)->course_id;
+        $course = Course::find($course_id);
+        $data = Result::where('semester_id',$id)
+            ->where('course_id',$course_id)
             ->get();
-//        dd($data);
+//        dd($code);
         return Datatables::of($data)
             ->addColumn('rollno', function($data){
 //                return Course::find($data->course_id)->name;
@@ -540,4 +551,135 @@ class SemesterController extends Controller
         $result->save();
         return $result;
     }
+
+    public function studentIndex()
+    {
+        try{
+//            $role = Role::where('name','Admin')->first()->users;
+//            $nonmembers = $users->reject(function ($user, $key) {
+//                return $user->hasRole('Member');
+//            });
+//            $result = Semester::whereIn('id',Result::where('user_id',Auth::user()->id)
+//                ->distinct()->get(['semester_id'])->pluck('id'))->get();
+//            dd($result);
+//            $result = Result::where('user_id',Auth::user()->id)
+//                ->distinct()->get(['semester_id']);
+//            $semList = array();
+//            foreach ($result as $r){
+//                array_push($semList,$r->semester_id);
+//            }
+//            $sem = Semester::whereIn('id',$semList)->get();
+//            dd($sem);
+            $branches = Branch::pluck('name','id');
+            $courses = Course::pluck('name','id');
+            return view('admin.student.semester', compact('branches','courses'));
+        }catch (\Exception $e) {
+            $bug = $e->getMessage();
+            return redirect()->back()->with('error', $bug);
+        }
+    }
+
+    public function getStudentSemesterList()
+    {
+        $result = Result::where('user_id',Auth::user()->id)
+            ->distinct()->get(['semester_id']);
+        $semList = array();
+        foreach ($result as $r){
+            array_push($semList,$r->semester_id);
+        }
+        $data = Semester::whereIn('id',$semList)->get();
+//        $data  = Result::where('user_id',Auth::user()->id)
+//            ->distinct()->get(['semester_id'])->pluck('id');
+
+        return Datatables::of($data)
+            ->addColumn('batch', function($data){
+                return $data->batch;
+            })
+            ->addColumn('number', function($data){
+                return $data->number;
+            })
+//            ->addColumn('branches', function($data){
+//                return $data->branch->name;
+//            })
+            ->addColumn('courses', function($data){
+                $list = DB::table('semester_has_courses')->where('semester_id',$data->id)->pluck('course_id');
+                $courses = Course::whereIn('id',$list)->get();
+                $badges = '';
+                foreach ($courses as $key => $course) {
+                    $badges .= '<span class="badge badge-dark m-1">'.$course->name.'</span>';
+                }
+
+                return $badges;
+            })
+            ->addColumn('action', function($data){
+//                if (Auth::user()->can('manage_semester')){
+                return '<div class="table-actions">
+                                    <a href="'.url('semesters/view/'.$data->id).'" ><i class="ik ik-eye f-16 mr-15 text-blue"></i></a>
+                                </div>';
+//                }else{
+//                    return '';
+//                }
+            })
+            ->rawColumns(['batch','number','courses','action'])
+            ->make(true);
+    }
+
+    public function getStudentSemesterInfo($id)
+    {
+        try{
+            $branches = Branch::pluck('name','id');
+            $courses = Course::pluck('name','id');
+            $prof = User::get()->reject(function ($user, $key) {
+                return $user->hasRole('Student');
+            });
+//            $students = Role::where('name','Student')->first()->users;
+            $semester = Semester::find($id);
+//            dd($students);
+            if($semester){
+                $students = User::where('branch_id',$semester->branch_id)->get()->reject(function ($user, $key) {
+                    return !$user->hasRole('Student');
+                })->pluck('name','id');
+                $results = Result::where('semester_id',$semester->id)
+                    ->where('user_id',Auth::user()->id)
+                    ->get();
+                $data = array();
+                $results->ia_flag = false;
+                foreach ($results as $result){
+                    $c = Course::find($result->course_id);
+                    $result->course_name = $c->name;
+                    $result->course = $c;
+                    if ($result->ut1 != null) {
+                        $results->ia_flag = true;
+                    }
+                    $result->ia_flag = $c->ut1 == null ? false : true;
+                    $result->tw_flag = $c->tw == null ? false : true;
+                    $result->ese_flag = $c->ese == null ? false : true;
+                    $result->oral_flag = $c->oral == null ? false : true;
+                    $result->oral_prac_flag = $c->oral_practical == null ? false : true;
+                    if ($result->ut1 == null) {
+                        if ($result->ut2 == null) {
+                            $result->ia = 0;
+                        }else{
+                            $result->ia = ceil($result->ut2/2);
+                        }
+                    }else {
+                        if ($result->ut2 == null) {
+                            $result->ia = ceil($result->ut1/2);
+                        }else{
+                            $result->ia = ceil(($result->ut1+$result->ut2)/2);
+                        }
+                    }
+                }
+//                dd($results);
+                return view('admin.student.result', compact('branches','courses','semester','prof','students','results'));
+            }else{
+                return redirect('404');
+            }
+
+        }catch (\Exception $e) {
+            $bug = $e->getMessage();
+            return redirect()->back()->with('error', $bug);
+        }
+    }
+
 }

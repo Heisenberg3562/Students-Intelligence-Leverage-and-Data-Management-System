@@ -50,6 +50,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 	// dashboard route
 	Route::get('/dashboard', function () {
+	    if (Auth::user()->hasRole('Super Admin')) {
+            return view('pages.dashboard');
+	    }
+	    if (Auth::user()->hasRole('Student')) {
+	        return view('pages.studentdashboard');
+	    }
 		return view('pages.dashboard');
 	})->name('dashboard');
 
@@ -177,6 +183,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/table-datatable-edit', function () {
 		return view('pages.datatable-editable');
 	});
+
+    Route::get('/semesters', [SemesterController::class,'studentIndex']);
+    Route::get('/semesters/get-list', [SemesterController::class,'getStudentSemesterList']);
+    Route::get('/semesters/view/{id}', [SemesterController::class,'getStudentSemesterInfo']);
 
     // Themekit demo pages
 	Route::get('/calendar', function () { return view('pages.calendar'); });
