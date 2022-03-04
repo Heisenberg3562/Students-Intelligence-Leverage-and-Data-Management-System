@@ -62,22 +62,22 @@ class CourseController extends Controller
                 return $data->credits;
             })
             ->addColumn('ut1', function($data){
-                return $data->credits;
+                return $data->ut1;
             })
             ->addColumn('ut2', function($data){
-                return $data->credits;
+                return $data->ut2;
             })
             ->addColumn('ese', function($data){
-                return $data->credits;
+                return $data->ese;
             })
             ->addColumn('tw', function($data){
-                return $data->credits;
+                return $data->tw;
             })
             ->addColumn('oral', function($data){
-                return $data->credits;
+                return $data->oral;
             })
             ->addColumn('oral_practical', function($data){
-                return $data->credits;
+                return $data->oral_practical;
             })
             ->addColumn('branches', function($data){
                 return $data->branch->name;

@@ -23,6 +23,9 @@
                 <div class="nav-item {{ ($segment1 == 'railway') ? 'active' : '' }}">
                     <a href="{{url('railway')}}"><i class="ik ik-shield"></i><span>{{ __('Railway Concession')}}</span></a>
                 </div>
+                <div class="nav-item {{ ($segment1 == 'semesters') ? 'active' : '' }}">
+                    <a href="{{url('semesters')}}"><i class="ik ik-server"></i><span>{{ __('Semesters')}}</span></a>
+                </div>
                 @canany(['manage_user','manage_roles','manage_permission','manage_stream','manage_branch','manage_course','manage_semester','manage_result'])
                 <div class="nav-item {{ ($segment1 == 'users' || $segment1 == 'roles'||$segment1 == 'permission' ||$segment1 == 'user' || $segment1 == 'stream' || $segment1 == 'branch' || $segment1 == 'course' || $segment1 == 'semester' || $segment1 == 'result') ? 'active open' : '' }} has-sub">
                     <a href="#"><i class="ik ik-user"></i><span>{{ __('Adminstrator')}}</span></a>
