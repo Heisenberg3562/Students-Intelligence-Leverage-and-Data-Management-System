@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Branch extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name','code','duration','stream_id'
-    ];
+    protected $guarded = [];
     public $timestamps = false;
     public function stream()
     {

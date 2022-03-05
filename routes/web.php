@@ -50,6 +50,12 @@ Route::group(['middleware' => 'auth'], function(){
 
 	// dashboard route
 	Route::get('/dashboard', function () {
+	    if (Auth::user()->hasRole('Super Admin')) {
+            return view('pages.dashboard');
+	    }
+	    if (Auth::user()->hasRole('Student')) {
+	        return view('pages.studentdashboard');
+	    }
 		return view('pages.dashboard');
 	})->name('dashboard');
 
@@ -70,6 +76,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('/user/{id}', [UserController::class,'edit']);
 		Route::post('/user/update', [UserController::class,'update']);
 		Route::get('/user/delete/{id}', [UserController::class,'delete']);
+        Route::post('/user/upload', [UserController::class,'uploadUsers'])->name('users.upload');
 	});
     Route::group(['middleware' => 'can:manage_profile'], function(){
         Route::get('/profile/{id}', [UserController::class,'profile']);
@@ -117,17 +124,32 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/course/create', [CourseController::class,'create']);
         Route::get('/course/update', [CourseController::class,'update']);
         Route::get('/course/delete/{id}', [CourseController::class,'delete']);
+        Route::post('/course/upload', [CourseController::class,'uploadCourses'])->name('course.upload');
     });
 
     Route::group(['middleware' => 'can:manage_semester|manage_user'], function(){
         Route::get('/semester', [SemesterController::class,'index']);
-        Route::get('/semesters/{id}', [SemesterController::class,'getSemesterInfo']);
+        Route::get('/semester/view/{id}', [SemesterController::class,'getSemesterInfo']);
+        Route::get('/semester/{id}/course/view/{code}', [SemesterController::class,'getCourseInfo']);
         Route::get('/semester/get-list', [SemesterController::class,'getSemesterList']);
-        Route::get('/semester/get-course-list', [SemesterController::class,'getCoursesList']);
-        Route::get('/semesters/get-courses', [SemesterController::class,'getCourses']);
+        Route::get('/semester/get-course-list/{id}', [SemesterController::class,'getCoursesList']);
+        Route::get('/semester/view/get-courses/{id}', [SemesterController::class,'getCourses']);
+        Route::get('/semester/view/get-students/{id}', [SemesterController::class,'getStudents']);
+        Route::get('/semester/{id}/get-student-marks/{code}', [SemesterController::class,'getStudentMarks']);
         Route::post('/semester/create', [SemesterController::class,'create']);
-        Route::get('/semester/update', [SemesterController::class,'update']);
+        Route::get('/semester/update', [SemesterController::class,'update'])->name('semester.prof.update');
         Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
+        Route::get('/semester/student/delete/{id}', [SemesterController::class,'deleteStudent']);
+        Route::post('/semester/student/upload', [SemesterController::class,'uploadStudentList'])->name('semester.student.upload');
+        Route::post('/semester/student/add', [SemesterController::class,'addStudent']);
+        Route::get('/semester/result/update', [SemesterController::class,'updateResult'])->name('semester.result.update');
+//        Route::get('/semester/course/{id}', [SemesterController::class,'index']);
+//        Route::get('/semester/course/get-list', [SemesterController::class,'getSemesterList']);
+//        Route::get('/semester/get-course-list/{id}', [SemesterController::class,'getCoursesList']);
+//        Route::get('/semester/view/get-courses/{id}', [SemesterController::class,'getCourses']);
+//        Route::post('/semester/create', [SemesterController::class,'create']);
+//        Route::get('/semester/update', [SemesterController::class,'update'])->name('semester.prof.update');
+//        Route::get('/semester/delete/{id}', [SemesterController::class,'delete']);
     });
 
     Route::group(['middleware' => 'can:manage_result|manage_user'], function(){
@@ -155,9 +177,6 @@ Route::group(['middleware' => 'auth'], function(){
 	// get permissions
 	Route::get('get-role-permissions-badge', [PermissionController::class,'getPermissionBadgeByRole']);
 
-    Route::get('/resultupdate', [ResultController::class,'import']);
-
-
 	// permission examples
     Route::get('/permission-example', function () {
     	return view('permission-example');
@@ -168,6 +187,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/table-datatable-edit', function () {
 		return view('pages.datatable-editable');
 	});
+
+    Route::get('/semesters', [SemesterController::class,'studentIndex']);
+    Route::get('/semesters/get-list', [SemesterController::class,'getStudentSemesterList']);
+    Route::get('/semesters/view/{id}', [SemesterController::class,'getStudentSemesterInfo']);
 
     // Themekit demo pages
 	Route::get('/calendar', function () { return view('pages.calendar'); });

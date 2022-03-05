@@ -32,7 +32,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top">
 		<div class="container">
-			<a href="/" class="navbar-brand"><img src="{{ asset('img/sildms_logo_black.png') }}" alt=""></a>
+			<a href="index.blade.php" class="navbar-brand"><img src="{{ asset('fassets/images/logo.png') }}" alt=""></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="icon ion-ios-menu"></i>
 			</button>

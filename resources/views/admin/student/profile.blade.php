@@ -41,7 +41,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src="../img/user.jpg" class="rounded-circle" width="150" />
+                            <img src="{{ asset('img/users/')."/"}}{{ Auth::user()->avatar == 'default.jpg' ? Auth::user()->gender == 1 ? 'male_' : 'female_' : '' }}{{ Auth::user()->avatar == 'default.jpg' ? Auth::user()->role == 'Student' ? 'student.png' : 'instructor.png' : '' }}" class="rounded-circle" width="150" />
                             <h4 class="card-title mt-10">{{ $user->name}}</h4>
                             <p class="card-subtitle">{{ $user->rollno }}</p>
                             <h6 class="card-subtitle">{{ $user->branch->name }}</h6>
@@ -76,85 +76,85 @@
             <div class="col-lg-8 col-md-7">
                 <div class="card">
                     <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link active" id="pills-timeline-tab" data-toggle="pill" href="#current-month" role="tab" aria-controls="pills-timeline" aria-selected="true">{{ __('Timeline')}}</a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
-                            <a class="nav-link active" id="pills-timeline-tab" data-toggle="pill" href="#current-month" role="tab" aria-controls="pills-timeline" aria-selected="true">{{ __('Timeline')}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#last-month" role="tab" aria-controls="pills-profile" aria-selected="false">{{ __('Profile')}}</a>
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#last-month" role="tab" aria-controls="pills-profile" aria-selected="true">{{ __('Profile')}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month" role="tab" aria-controls="pills-setting" aria-selected="false">{{ __('Setting')}}</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">
-                            <div class="card-body">
-                                <div class="profiletimeline mt-0">
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="../img/users/1.jpg" alt="user" class="rounded-circle" /> </div>
-                                        <div class="sl-right">
-                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img2.jpg" class="img-fluid rounded" /></div>
-                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img3.jpg" class="img-fluid rounded" /></div>
-                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img4.jpg" class="img-fluid rounded" /></div>
-                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img5.jpg" class="img-fluid rounded" /></div>
-                                                </div>
-                                                <div class="like-comm">
-                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a>
-                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="../img/users/2.jpg" alt="user" class="rounded-circle" /> </div>
-                                        <div class="sl-right">
-                                            <div> <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                <div class="mt-20 row">
-                                                    <div class="col-md-3 col-xs-12"><img src="../img/big/img6.jpg" alt="user" class="img-fluid rounded" /></div>
-                                                    <div class="col-md-9 col-xs-12">
-                                                        <p> {{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.')}}</p> <a href="javascript:void(0)" class="btn btn-success"> Design weblayout</a>
-                                                    </div>
-                                                </div>
-                                                <div class="like-comm mt-20">
-                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a>
-                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="../img/users/3.jpg" alt="user" class="rounded-circle" /> </div>
-                                        <div class="sl-right">
-                                            <div>
-                                                <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                <p class="mt-10">{{ __(' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper')}} </p>
-                                            </div>
-                                            <div class="like-comm mt-20">
-                                                <a href="javascript:void(0)" class="link mr-10">2 comment</a>
-                                                <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="../img/users/4.jpg" alt="user" class="rounded-circle" /> </div>
-                                        <div class="sl-right">
-                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
-                                                <blockquote class="mt-10">
-                                                    {{ __('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt')}}
-                                                </blockquote>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="last-month" role="tabpanel" aria-labelledby="pills-profile-tab">
+{{--                        <div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <div class="profiletimeline mt-0">--}}
+{{--                                    <div class="sl-item">--}}
+{{--                                        <div class="sl-left"> <img src="../img/users/1.jpg" alt="user" class="rounded-circle" /> </div>--}}
+{{--                                        <div class="sl-right">--}}
+{{--                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>--}}
+{{--                                                <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>--}}
+{{--                                                <div class="row">--}}
+{{--                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img2.jpg" class="img-fluid rounded" /></div>--}}
+{{--                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img3.jpg" class="img-fluid rounded" /></div>--}}
+{{--                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img4.jpg" class="img-fluid rounded" /></div>--}}
+{{--                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img5.jpg" class="img-fluid rounded" /></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="like-comm">--}}
+{{--                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a>--}}
+{{--                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <hr>--}}
+{{--                                    <div class="sl-item">--}}
+{{--                                        <div class="sl-left"> <img src="../img/users/2.jpg" alt="user" class="rounded-circle" /> </div>--}}
+{{--                                        <div class="sl-right">--}}
+{{--                                            <div> <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>--}}
+{{--                                                <div class="mt-20 row">--}}
+{{--                                                    <div class="col-md-3 col-xs-12"><img src="../img/big/img6.jpg" alt="user" class="img-fluid rounded" /></div>--}}
+{{--                                                    <div class="col-md-9 col-xs-12">--}}
+{{--                                                        <p> {{ __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.')}}</p> <a href="javascript:void(0)" class="btn btn-success"> Design weblayout</a>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="like-comm mt-20">--}}
+{{--                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a>--}}
+{{--                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <hr>--}}
+{{--                                    <div class="sl-item">--}}
+{{--                                        <div class="sl-left"> <img src="../img/users/3.jpg" alt="user" class="rounded-circle" /> </div>--}}
+{{--                                        <div class="sl-right">--}}
+{{--                                            <div>--}}
+{{--                                                <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>--}}
+{{--                                                <p class="mt-10">{{ __(' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper')}} </p>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="like-comm mt-20">--}}
+{{--                                                <a href="javascript:void(0)" class="link mr-10">2 comment</a>--}}
+{{--                                                <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <hr>--}}
+{{--                                    <div class="sl-item">--}}
+{{--                                        <div class="sl-left"> <img src="../img/users/4.jpg" alt="user" class="rounded-circle" /> </div>--}}
+{{--                                        <div class="sl-right">--}}
+{{--                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>--}}
+{{--                                                <blockquote class="mt-10">--}}
+{{--                                                    {{ __('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt')}}--}}
+{{--                                                </blockquote>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <div class="tab-pane fade show active" id="last-month" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3 col-6"> <strong>{{ __('Full Name')}}</strong>

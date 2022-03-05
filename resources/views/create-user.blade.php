@@ -4,6 +4,7 @@
     <!-- push external head elements to head -->
     @push('head')
         <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/DataTables/datatables.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/yearpicker.css') }}">
     @endpush
 
@@ -41,7 +42,18 @@
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header">
-                        <h3>{{ __('Add user')}}</h3>
+                        <h3 class="d-block w-100">Add User
+                            <small class="float-right"><a href="{{ asset('sample/student_import.csv') }}" download type="button" class="btn btn-success float-right"><i class="fa fa-download"></i> {{ __('Download Import Template')}}</a></small><pre  class="float-right"> </pre>
+                            <small class="float-right">
+                                <input form="form1" type="file" name="csv[]" id="csv" class="file-upload-default" hidden>
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">{{ __('Upload')}}</button>
+                                    </span>
+                                </div>
+                            </small>
+                        </h3>
                     </div>
                     <div class="card-body">
                         <form class="forms-sample" method="POST" action="{{ route('create-user') }}" >
@@ -250,5 +262,11 @@
             $('.yearpicker').yearpicker();
 
         </script>
+        <script>
+            var config = {};
+            config.url = '{{ route('users.upload') }}';
+            config.token = "{{ csrf_token() }}";
+        </script>
+        <script src="{{ asset('js/upload_users.js') }}"></script>
     @endpush
 @endsection

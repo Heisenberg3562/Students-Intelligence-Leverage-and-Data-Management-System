@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Branch;
+use App\Result;
 use App\Skill;
+use http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -342,4 +345,86 @@ class UserController extends Controller
         }
     }
 
+    public function uploadUsers(Request $request){
+        $file = $request->file('file');
+        if ($file) {
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
+            $tempPath = $file->getRealPath();
+            $fileSize = $file->getSize(); //Get size of uploaded file in bytes
+            $this->checkUploadedFileProperties($extension, $fileSize);
+            $location = 'uploads'; //Created an "uploads" folder for that
+            $file->move($location, $filename);
+            $filepath = public_path($location . "/" . $filename);
+            $file = fopen($filepath, "r");
+            $importData_arr = array(); // Read through the file and store the contents as an array
+            $i = 0;
+            while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+                $num = count($filedata);
+                if ($i == 0) {
+                    $i++;
+                    continue;
+                }
+                for ($c = 0; $c < $num; $c++) {
+                    $importData_arr[$i][] = $filedata[$c];
+                }
+                $i++;
+            }
+            fclose($file); //Close after reading
+            $j = 0;
+//            dd($importData_arr);
+            foreach ($importData_arr as $importData) {
+//                dd($importData);
+//                $name = $importData[1]; //Get user names
+//                $email = $importData[3]; //Get the user emails
+                $j++;
+                try {
+                    DB::beginTransaction();
+                    if (!User::where('rollno', '=', strtoupper($importData[0]))->exists()){
+                        $user = User::create([
+                            'name'              => $importData[1],
+                            'email'             => $importData[2],
+                            'email2'            => $importData[3],
+                            'branch_id'         => $importData[9],
+                            'gender'            => $importData[4],
+                            'year_of_study'     => $importData[5],
+                            'dob'               => date_format(date_create($importData[7]),"Y-m-d"),
+                            'current_semester'  => $importData[8],
+                            'batch_year'        => $importData[6],
+                            'rollno'            => strtoupper($importData[0]),
+                            'phone'             => $importData[10],
+                            'address'           => $importData[11],
+                            'password'          => Hash::make('12345678'),
+                        ]);
+                        $user->syncRoles(Role::where('name','Student')->get()->first()->id);
+                    }
+                    DB::commit();
+                } catch (\Exception $e) {
+//                    return response()->json([
+//                        'message' => $e
+//                    ]);
+                    DB::rollBack();
+                }
+            }
+            return response()->json([
+                'message' => "$j records successfully uploaded"
+            ]);
+        } else {
+            throw new \Exception('No file was uploaded', 404);
+        }
+    }
+
+    public function checkUploadedFileProperties($extension, $fileSize)
+    {
+        $valid_extension = array("csv", "xlsx"); //Only want csv and excel files
+        $maxFileSize = 2097152; // Uploaded file size limit is 2mb
+        if (in_array(strtolower($extension), $valid_extension)) {
+            if ($fileSize <= $maxFileSize) {
+            } else {
+                throw new \Exception('No file was uploaded', Response::HTTP_REQUEST_ENTITY_TOO_LARGE); //413 error
+            }
+        } else {
+            throw new \Exception('Invalid file extension', Response::HTTP_UNSUPPORTED_MEDIA_TYPE); //415 error
+        }
+    }
 }

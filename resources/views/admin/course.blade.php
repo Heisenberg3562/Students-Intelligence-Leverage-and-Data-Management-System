@@ -42,7 +42,20 @@
             @can('manage_course')
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header"><h3>{{ __('Add Course')}}</h3></div>
+                    <div class="card-header">
+                        <h3 class="d-block w-100">Add Course
+                            <small class="float-right"><a href="{{ asset('sample/courses_import.csv') }}" download type="button" class="btn btn-success float-right"><i class="fa fa-download"></i> {{ __('Download Import Template')}}</a></small><pre  class="float-right"> </pre>
+                            <small class="float-right">
+                                <input form="form1" type="file" name="csv[]" id="csv" class="file-upload-default" hidden>
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">{{ __('Upload')}}</button>
+                                    </span>
+                                </div>
+                            </small>
+                        </h3>
+                    </div>
                     <div class="card-body">
                         <form class="forms-sample" method="POST" action="{{url('course/create')}}">
                             @csrf
@@ -77,6 +90,44 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="ut1">{{ __('UT1')}}</label>
+                                        <input type="number" class="form-control" id="ut1" name="ut1" placeholder="Total marks">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="ut2">{{ __('UT2')}}</label>
+                                        <input type="number" class="form-control" id="ut2" name="ut2" placeholder="Total marks">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="ese">{{ __('ESE')}}</label>
+                                        <input type="number" class="form-control" id="ese" name="ese" placeholder="Total marks">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="tw">{{ __('TW')}}</label>
+                                        <input type="number" class="form-control" id="tw" name="tw" placeholder="Total marks">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="oral">{{ __('Oral')}}</label>
+                                        <input type="number" class="form-control" id="oral" name="oral" placeholder="Total marks">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="oral_practical">{{ __('Oral & Practical')}}</label>
+                                        <input type="number" class="form-control" id="oral_practical" name="oral_practical" placeholder="Total credits">
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -93,6 +144,12 @@
                                     <th>{{ __('Course Code')}}</th>
                                     <th>{{ __('Course')}}</th>
                                     <th>{{ __('Total Credits')}}</th>
+                                    <th>{{ __('UT1')}}</th>
+                                    <th>{{ __('UT2')}}</th>
+                                    <th>{{ __('ESE')}}</th>
+                                    <th>{{ __('TW')}}</th>
+                                    <th>{{ __('Oral')}}</th>
+                                    <th>{{ __('Oral & Practical')}}</th>
                                     <th>{{ __('Assigned Branch')}}</th>
                                     <th>{{ __('Action')}}</th>
                                 </tr>
@@ -112,5 +169,11 @@
     <script src="{{ asset('plugins/DataTables/Cell-edit/dataTables.cellEdit.js') }}"></script>
     <!--server side course table script-->
     <script src="{{ asset('js/course.js') }}"></script>
+    <script>
+        var config = {};
+        config.url = '{{ route('users.upload') }}';
+        config.token = "{{ csrf_token() }}";
+    </script>
+    <script src="{{ asset('js/upload_courses.js') }}"></script>
     @endpush
 @endsection
