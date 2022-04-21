@@ -643,8 +643,14 @@ class SemesterController extends Controller
                     ->where('user_id',Auth::user()->id)
                     ->get();
                 $data = array();
+                $results->marks = 0;
+                $results->totals = 0;
+                $results->credits = 0;
+                $results->gpc = 0;
                 $results->ia_flag = false;
                 foreach ($results as $result){
+                    $mark = 0;
+                    $sub_total = 0;
                     $c = Course::find($result->course_id);
                     $result->course_name = $c->name;
                     $result->course = $c;
@@ -669,7 +675,36 @@ class SemesterController extends Controller
                             $result->ia = ceil(($result->ut1+$result->ut2)/2);
                         }
                     }
+                    if ($c->ut1) {
+                        $mark += $result->ia;
+                        $sub_total += $c->ut1;
+                    }
+                    if ($c->tw) {
+                        $mark += $result->tw;
+                        $sub_total += $c->tw;
+                    }
+                    if ($c->ese) {
+                        $mark += $result->ese;
+                        $sub_total += $c->ese;
+                    }
+                    if ($c->oral) {
+                        $mark += $result->oral;
+                        $sub_total += $c->oral;
+                    }
+                    if ($c->oral_practical) {
+                        $mark += $result->oral_practical;
+                        $sub_total += $c->oral_practical;
+                    }
+                    $result->mark += $mark;
+                    $result->total += $sub_total;
+                    $result->grade = $this->gradePoint($mark,$sub_total);
+                    $result->gpc = $result->grade * $c->credits;
+                    $results->marks += $result->mark;
+                    $results->totals += $result->total;
+                    $results->credits += $c->credits;
+                    $results->gpc += $result->gpc;
                 }
+                $results->sgpi = round($results->gpc / $results->credits,2);
 //                dd($results);
                 return view('admin.student.result', compact('branches','courses','semester','prof','students','results'));
             }else{
@@ -679,6 +714,27 @@ class SemesterController extends Controller
         }catch (\Exception $e) {
             $bug = $e->getMessage();
             return redirect()->back()->with('error', $bug);
+        }
+    }
+
+    public function gradePoint($mark,$total){
+        $num = ($mark / $total) * 100;
+        if ($num >= 80) {
+            return 10;
+        }elseif (75 >= $num and $num < 80){
+            return 9;
+        }elseif (70 >= $num and $num < 75){
+            return 8;
+        }elseif (60 >= $num and $num < 70){
+            return 7;
+        }elseif (50 >= $num and $num < 60){
+            return 6;
+        }elseif (45 >= $num and $num < 50){
+            return 5;
+        }elseif (40 >= $num and $num < 45){
+            return 4;
+        }else {
+            return 0;
         }
     }
 

@@ -20,8 +20,14 @@
                 <div class="nav-item {{ ($segment1 == 'dashboard') ? 'active' : '' }}">
                     <a href="{{route('dashboard')}}"><i class="ik ik-bar-chart-2"></i><span>{{ __('Dashboard')}}</span></a>
                 </div>
-                <div class="nav-item {{ ($segment1 == 'railway') ? 'active' : '' }}">
-                    <a href="{{url('railway')}}"><i class="ik ik-shield"></i><span>{{ __('Railway Concession')}}</span></a>
+                <div class="nav-item {{ ($segment1 == 'railway') ? 'active open' : '' }} has-sub">
+                    <a href="#"><i class="ik ik-shield"></i><span>{{ __('Railway Concession')}}</span></a>
+                    @can('manage_railway')
+                    <div class="submenu-content {{ ($segment1 == 'railway' && $segment2 == 'verify') ? 'active' : '' }}">
+                        <a href="{{url('railway')}}" class="menu-item {{ ($segment1 == 'railway' && $segment2 == null) ? 'active' : '' }}">{{ __('Apply')}}</a>
+                        <a href="{{url('railway/verify')}}" class="menu-item {{ ($segment1 == 'railway' && $segment2 == 'verify') ? 'active' : '' }}">{{ __('Verify Submission')}}</a>
+                    </div>
+                    @endcan
                 </div>
                 <div class="nav-item {{ ($segment1 == 'semesters') ? 'active' : '' }}">
                     <a href="{{url('semesters')}}"><i class="ik ik-server"></i><span>{{ __('Semesters')}}</span></a>

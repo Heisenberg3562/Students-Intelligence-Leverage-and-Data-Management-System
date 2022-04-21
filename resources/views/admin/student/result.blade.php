@@ -43,15 +43,15 @@
                     <div class="row align-items-center">
                         <div class="col-auto">
                             <div id="status-round-1" class="chart-shadow st-cir-chart" >
-                                <h5>40%</h5>
+                                <h5>70%</h5>
                             </div>
                         </div>
                         <div class="col text-center">
-                            <h3 class=" fw-700 mb-5">4/10</h3>
-                            <h6 class="mb-0 ">Mentorship lectures Attendend</h6>
+                            <h3 class=" fw-700 mb-5">{{ $results->sgpi }}</h3>
+                            <h6 class="mb-0 ">SGPI</h6>
                         </div>
                     </div>
-                    <span class="st-bt-lbl">40</span>
+                    <span class="st-bt-lbl">70</span>
                 </div>
             </div>
         </div>
@@ -438,5 +438,11 @@
         <script src="{{ asset('plugins/chartist/dist/chartist.min.js') }}"></script>
         <script src="{{ asset('js/chart-chartist.js') }}"></script>
         <script src="{{ asset('js/result_student_view.js') }}"></script>
+        <script>
+            $( document ).ready(function() {
+                $('a[href="http://www.amcharts.com"]').hide();
+                // console.log($('a[href="http://www.amcharts.com"]').text());
+            });
+        </script>
     @endpush
 @endsection

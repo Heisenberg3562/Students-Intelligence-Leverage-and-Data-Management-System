@@ -48,9 +48,6 @@
                         <table id="course_table" class="table">
                             <thead>
                                 <tr>
-{{--                                    <th>{{ __('Batch')}}</th>--}}
-{{--                                    <th>{{ __('Number')}}</th>--}}
-{{--                                    <th>{{ __('Assigned Branch')}}</th>--}}
                                     <th>{{ __('Assigned Courses')}}</th>
                                     <th>{{ __('Assigned Professors')}}</th>
                                     <th>{{ __('Action')}}</th>
