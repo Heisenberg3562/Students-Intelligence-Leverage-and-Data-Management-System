@@ -49,15 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/profile/edit', [UserController::class,'updateMyProfile'])->name('update-profile');
 
 	// dashboard route
-	Route::get('/dashboard', function () {
-	    if (Auth::user()->hasRole('Super Admin')) {
-            return view('pages.dashboard');
-	    }
-	    if (Auth::user()->hasRole('Student')) {
-	        return view('pages.studentdashboard');
-	    }
-		return view('pages.dashboard');
-	})->name('dashboard');
+	Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     Route::get('student/dashboard', function () {
 		return view('pages.studentdashboard');
