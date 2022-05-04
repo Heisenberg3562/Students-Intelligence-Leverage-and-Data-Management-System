@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SILDMS | Student Intelligence Leverage and Data Management System</title>
-	<link rel="icon" href="{{ asset('fassets/images/favicon.png') }}">
+	<link rel="icon" href="{{ asset('favicon.png') }}">
 
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
