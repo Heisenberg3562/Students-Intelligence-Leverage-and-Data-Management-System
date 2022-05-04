@@ -73,7 +73,7 @@
                                     <button class="btn btn-custom">Sign In</button>
                                 </div>
                                 <div class="register">
-                                    <p>{{ __('No account?')}} <a href="{{url('register')}}">{{ __('Sign Up')}}</a></p>
+{{--                                    <p>{{ __('No account?')}} <a href="{{url('register')}}">{{ __('Sign Up')}}</a></p>--}}
                                 </div>
 
                             </form>

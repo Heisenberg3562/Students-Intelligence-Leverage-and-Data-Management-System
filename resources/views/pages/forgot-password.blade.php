@@ -3,15 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{{ __('Forgot Password | Radmin - Laravel Admin Starter') }}</title>
+        <title>{{ __('Forgot Password | SILDMS') }}</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link rel="icon" href="{{ asset('favicon.png')}}" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-        
+
         <link rel="stylesheet" href="{{ asset('plugins/bootstrap/dist/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
         <link rel="stylesheet" href="{{ asset('plugins/ionicons/dist/css/ionicons.min.css')}}">
@@ -39,7 +39,7 @@
                     <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
                         <div class="authentication-form mx-auto">
                             <div class="logo-centered">
-                                <a href=""><img width="150"  src="{{ asset('img/logo.png')}}" alt=""></a>
+                                <a href=""><img width="150"  src="{{ asset('img/sildms_logo_dark.png')}}" alt=""></a>
                             </div>
                             <h3>{{ __('Forgot Password') }}</h3>
                             <p>{{ __('We will send you a link to reset password.') }}</p>
@@ -64,14 +64,14 @@
                                 </div>
                             </form>
                             <div class="register">
-                                <p>{{ __('Not a member') }}? <a href="{{ url('register')}}">{{ __('Create an account') }}</a></p>
+{{--                                <p>{{ __('Not a member') }}? <a href="{{ url('register')}}">{{ __('Create an account') }}</a></p>--}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <script src="{{ asset('src/js/vendor/jquery-3.3.1.min.js')}}"></script>
         <script src="{{ asset('plugins/popper.js')}}/dist/umd/popper.min.js')}}"></script>
         <script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>

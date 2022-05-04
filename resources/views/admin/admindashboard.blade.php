@@ -34,7 +34,7 @@
                     <div class="card-block">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h4 class="mb-0">{{ __('108')}}</h4>
+                                <h4 class="mb-0">{{ __('10')}}</h4>
                                 <p class="mb-0">{{ __('Professors in Engineering')}}</p>
                             </div>
                             <div class="col-4 text-right">

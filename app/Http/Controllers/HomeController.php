@@ -19,6 +19,7 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
+        $att = '0';
         if (Auth::user()->hasRole('Super Admin')) {
 //            $client = new \Google_Client();
 //            $client->setApplicationName('My PHP App');
@@ -77,14 +78,21 @@ class HomeController extends Controller
 //
 //            dd($data);
 //            $response = Http::get('http://127.0.0.1:8000/api/sheetData/?sheetId=19yVlR5lmrBnqBcS4fkrAJxzVDwW20dH47uBXNI7hmpY&rollno=18CO20');
-            $json = json_decode(file_get_contents('http://127.0.0.1:8000/api/sheetData/?sheetId=19yVlR5lmrBnqBcS4fkrAJxzVDwW20dH47uBXNI7hmpY&rollno=18CO20'), true);
-            dd($json);
-            return view('pages.dashboard');
+//            $json = json_decode(file_get_contents('http://127.0.0.1:8000/api/sheetData/?sheetId=19yVlR5lmrBnqBcS4fkrAJxzVDwW20dH47uBXNI7hmpY&rollno=18CO20'), true);
+////            dd($json);
+//            $att = $json['Attendance'];
+            return view('admin.admindashboard');
+//            return view('admin.admindashboard',compact($json));
         }
         if (Auth::user()->hasRole('Student')) {
-            return view('pages.studentdashboard');
+            $rollno = Auth::user()->rollno;
+            $json = json_decode(file_get_contents('https://career4hub.herokuapp.com/api/sheetData/?sheetId=19yVlR5lmrBnqBcS4fkrAJxzVDwW20dH47uBXNI7hmpY&rollno='.$rollno), true);
+//            dd($json);
+            $att = $json['Attendance'];
+
+            return view('admin.studentdashboard',compact('att'));
         }
-        return view('pages.dashboard');
+        return view('admin.admindashboard',compact('att'));
     }
 
     public function clearCache()

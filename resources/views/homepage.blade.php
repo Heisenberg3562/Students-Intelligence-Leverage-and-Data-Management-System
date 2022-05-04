@@ -32,7 +32,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-md navbar-light fixed-top">
 		<div class="container">
-			<a href="index.blade.php" class="navbar-brand"><img src="{{ asset('fassets/images/logo.png') }}" alt=""></a>
+			<a href="{{ url('/') }}" class="navbar-expand-sm"><img src="{{ asset('img/sildms_logo_dark_sm.png') }}" alt=""></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="icon ion-ios-menu"></i>
 			</button>
@@ -62,8 +62,13 @@
 						<h2><span class="color-highlight">Student Intelligence</span> <span class="color-highlight1">Leverage and</span></h2>
 						<h2><span class="color-highlight1">Data Management </span><span class="color-highlight">System</span></h2>
 						<ul>
-							<li><a href="{{ url('login') }}" class="button">Login</a></li>
-							<li><a href="" class="button button-secondary">Sign up</a></li>
+                            @if(Auth::user())
+                                <li><a href="{{ url('dashboard') }}" class="button">Home</a></li>
+                            @else
+                                <li><a href="{{ url('login') }}" class="button">Login</a></li>
+                            @endif
+{{--							<li><a href="{{ url('login') }}" class="button">Login</a></li>--}}
+{{--							<li><a href="" class="button button-secondary">Sign up</a></li>--}}
 						</ul>
 					</div>
 				</div>
@@ -193,17 +198,17 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="content">
-						<div class="brand"><img src="{{ asset('fassets/images/white-logo.png') }}" alt=""></div>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, accusamus.</p>
+						<div class=""><img src="{{ asset('img/sildms_logo_white1_sm.png') }}" alt=""></div>
+						<p><br>Student Intelligence Leverage and Data Management System</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="content">
 						<h5>About</h5>
 						<ul>
-							<li><a href=""><i class="icon ion-ios-contact"></i> About us</a></li>
-							<li><a href=""><i class="icon ion-ios-chatboxes"></i> Contact</a></li>
-							<li><a href=""><i class="icon ion-ios-list"></i> Portfolio</a></li>
+							<li><a href="https://www.aiktc.ac.in/about-us/"><i class="icon ion-ios-contact"></i> About us</a></li>
+							<li><a href="https://www.aiktc.ac.in/"><i class="icon ion-ios-chatboxes"></i> Contact</a></li>
+{{--							<li><a href=""><i class="icon ion-ios-list"></i> Portfolio</a></li>--}}
 						</ul>
 					</div>
 				</div>
@@ -211,10 +216,10 @@
 					<div class="content">
 						<h5>Support</h5>
 						<ul>
-							<li><a href=""><i class="icon ion-ios-headset"></i> support@example.com</a></li>
-							<li><a href=""><i class="icon ion-ios-call"></i> +61 3 8376 6284
+							<li><a href=""><i class="icon ion-ios-headset"></i> aiktc.newpanvel@aiktc.ac.in</a></li>
+							<li><a href=""><i class="icon ion-ios-call"></i> 022 2748 1247
 							</a></li>
-							<li><a href=""><i class="icon ion-ios-settings"></i> Services</a></li>
+{{--							<li><a href=""><i class="icon ion-ios-settings"></i> Services</a></li>--}}
 						</ul>
 					</div>
 				</div>
@@ -222,9 +227,9 @@
 					<div class="content">
 						<h5>Follow us</h5>
 						<ul class="social">
-							<li><a href=""><i class="icon ion-logo-facebook"></i> Facebook</a></li>
-							<li><a href=""><i class="icon ion-logo-twitter"></i> Twitter</a></li>
-							<li><a href=""><i class="icon ion-logo-instagram"></i> Instagram</a></li>
+							<li><a href="https://www.facebook.com/aiktcofficial"><i class="icon ion-logo-facebook"></i> Facebook</a></li>
+							<li><a href="https://twitter.com/aiktcofficial"><i class="icon ion-logo-twitter"></i> Twitter</a></li>
+							<li><a href="https://www.linkedin.com/school/anjuman-i-islams-school-of-engineering-and-technology-atanjuman-i-islam-kalsekar-technical-mumbai/"><i class="icon ion-logo-instagram"></i> Instagram</a></li>
 						</ul>
 					</div>
 				</div>

@@ -115,7 +115,7 @@
                     <h3>{{ __('Overall Attendence of the month')}}</h3>
                 </div>
                 <div class="card-block text-center">
-                    <div id="angular_guage" class="chart-shadow"></div>
+                    <div id="angular_guage1" class="chart-shadow"></div>
                 </div>
             </div>
         </div>
@@ -235,84 +235,84 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header d-block">
-                <h3>{{ __('Tasks and Completions')}}</h3>
-            </div>
-            <div class="card-body p-0 table-border-style">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>{{ __('Task')}}</th>
-                                <th>{{ __('Subject')}}</th>
-                                <th>{{ __('Deadline')}}</th>
-                                <th>{{ __('Status')}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-danger">
-                                <th scope="row">1</th>
-                                <td>HMI Experiment 1</td>
-                                <td>Prof. Mukhtar Ansari</td>
-                                <td>19-01-2022</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr class="table-danger">
-                                <th scope="row">2</th>
-                                <td>NLP Experiment 3</td>
-                                <td>Prof. Rehaal Qureshi</td>
-                                <td>21-02-2022</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr class="table-warning">
-                                <th scope="row">3</th>
-                                <td>DC Experiment 1</td>
-                                <td>Prof. Samreen Banu</td>
-                                <td>05-03-2022</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>CCL Experiment 1</td>
-                                <td>Prof Rehaal Qureshi</td>
-                                <td>10-03-2022</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>HMI Experiment 2</td>
-                                <td>Prof. Mukhtar Ansari</td>
-                                <td>13-03-2022</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>DC Experiment 2</td>
-                                <td>Prof. Samreen Banu</td>
-                                <td>15-03-2022</td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr class="table-success">
-                                <th scope="row">7</th>
-                                <td>NLP Experiment 1</td>
-                                <td>Prof Rehaal Qureshi</td>
-                                <td>19-02-2022</td>
-                                <td>Done</td>
-                            </tr>
-                            <tr class="table-success">
-                                <th scope="row">8</th>
-                                <td>NLP Experiment 2</td>
-                                <td>Prof Rehaal Qureshi</td>
-                                <td>19-02-2022</td>
-                                <td>Done</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+{{--        <div class="card">--}}
+{{--            <div class="card-header d-block">--}}
+{{--                <h3>{{ __('Tasks and Completions')}}</h3>--}}
+{{--            </div>--}}
+{{--            <div class="card-body p-0 table-border-style">--}}
+{{--                <div class="table-responsive">--}}
+{{--                    <table class="table">--}}
+{{--                        <thead>--}}
+{{--                            <tr>--}}
+{{--                                <th>#</th>--}}
+{{--                                <th>{{ __('Task')}}</th>--}}
+{{--                                <th>{{ __('Subject')}}</th>--}}
+{{--                                <th>{{ __('Deadline')}}</th>--}}
+{{--                                <th>{{ __('Status')}}</th>--}}
+{{--                            </tr>--}}
+{{--                        </thead>--}}
+{{--                        <tbody>--}}
+{{--                            <tr class="table-danger">--}}
+{{--                                <th scope="row">1</th>--}}
+{{--                                <td>HMI Experiment 1</td>--}}
+{{--                                <td>Prof. Mukhtar Ansari</td>--}}
+{{--                                <td>19-01-2022</td>--}}
+{{--                                <td>Pending</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr class="table-danger">--}}
+{{--                                <th scope="row">2</th>--}}
+{{--                                <td>NLP Experiment 3</td>--}}
+{{--                                <td>Prof. Rehaal Qureshi</td>--}}
+{{--                                <td>21-02-2022</td>--}}
+{{--                                <td>Pending</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr class="table-warning">--}}
+{{--                                <th scope="row">3</th>--}}
+{{--                                <td>DC Experiment 1</td>--}}
+{{--                                <td>Prof. Samreen Banu</td>--}}
+{{--                                <td>05-03-2022</td>--}}
+{{--                                <td>Pending</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <th scope="row">4</th>--}}
+{{--                                <td>CCL Experiment 1</td>--}}
+{{--                                <td>Prof Rehaal Qureshi</td>--}}
+{{--                                <td>10-03-2022</td>--}}
+{{--                                <td>Pending</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <th scope="row">5</th>--}}
+{{--                                <td>HMI Experiment 2</td>--}}
+{{--                                <td>Prof. Mukhtar Ansari</td>--}}
+{{--                                <td>13-03-2022</td>--}}
+{{--                                <td>Pending</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <th scope="row">6</th>--}}
+{{--                                <td>DC Experiment 2</td>--}}
+{{--                                <td>Prof. Samreen Banu</td>--}}
+{{--                                <td>15-03-2022</td>--}}
+{{--                                <td>Pending</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr class="table-success">--}}
+{{--                                <th scope="row">7</th>--}}
+{{--                                <td>NLP Experiment 1</td>--}}
+{{--                                <td>Prof Rehaal Qureshi</td>--}}
+{{--                                <td>19-02-2022</td>--}}
+{{--                                <td>Done</td>--}}
+{{--                            </tr>--}}
+{{--                            <tr class="table-success">--}}
+{{--                                <th scope="row">8</th>--}}
+{{--                                <td>NLP Experiment 2</td>--}}
+{{--                                <td>Prof Rehaal Qureshi</td>--}}
+{{--                                <td>19-02-2022</td>--}}
+{{--                                <td>Done</td>--}}
+{{--                            </tr>--}}
+{{--                        </tbody>--}}
+{{--                    </table>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         @push('script')
         <script src="{{ asset('plugins/amcharts/amcharts.js') }}"></script>
         <script src="{{ asset('plugins/amcharts/gauge.js') }}"></script>
@@ -325,5 +325,53 @@
         <script src="{{ asset('js/chart-amcharts.js') }}"></script>
         <script src="{{ asset('plugins/chartist/dist/chartist.min.js') }}"></script>
         <script src="{{ asset('js/chart-chartist.js') }}"></script>
+            <script>
+                var gaugeChart1 = AmCharts.makeChart("angular_guage1", {
+                    "type": "gauge",
+                    "theme": "none",
+                    "axes": [{
+                        "axisThickness": 1,
+                        "axisAlpha": 0.2,
+                        "tickAlpha": 0.2,
+                        "valueInterval": 10,
+                        "bands": [{
+                            "color": "#cc4748",
+                            "endValue": 60,
+                            "startValue": 0
+                        }, {
+                            "color": "#fdd400",
+                            "endValue": 75,
+                            "startValue": 60
+                        }, {
+                            "color": "#84b761",
+                            "endValue": 100,
+                            "innerRadius": "95%",
+                            "startValue": 75
+                        }],
+                        "bottomText": "0 km/h",
+                        "bottomTextYOffset": -20,
+                        "endValue": 100
+                    }],
+                    "arrows": [{}],
+                    "export": {
+                        "enabled": true
+                    }
+                });
+                setInterval(randomValue, 2000);
+                // set random value
+                function randomValue() {
+                    var value = parseInt('{{ $att }}');
+                    if (gaugeChart1) {
+                        if (gaugeChart1.arrows) {
+                            if (gaugeChart1.arrows[0]) {
+                                if (gaugeChart1.arrows[0].setValue) {
+                                    gaugeChart1.arrows[0].setValue(value);
+                                    gaugeChart1.axes[0].setBottomText(value + " %");
+                                }
+                            }
+                        }
+                    }
+                }
+            </script>
     @endpush
 @endsection

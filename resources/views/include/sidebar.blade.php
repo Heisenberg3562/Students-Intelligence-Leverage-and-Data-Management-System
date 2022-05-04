@@ -1,6 +1,6 @@
 <div class="app-sidebar colored">
     <div class="sidebar-header">
-        <a class="header-brand" href="{{route('dashboard')}}">
+        <a class="header-brand" href="{{ url('/') }}">
             <div class="logo-img">
                <img height="30" src="{{ asset('img/sildms_logo_white1.png')}}" class="header-brand-img" title="SILDMS">
             </div>
@@ -22,12 +22,14 @@
                 </div>
                 <div class="nav-item {{ ($segment1 == 'railway') ? 'active open' : '' }} has-sub">
                     <a href="#"><i class="ik ik-shield"></i><span>{{ __('Railway Concession')}}</span></a>
-                    @can('manage_railway')
+
                     <div class="submenu-content {{ ($segment1 == 'railway' && $segment2 == 'verify') ? 'active' : '' }}">
                         <a href="{{url('railway')}}" class="menu-item {{ ($segment1 == 'railway' && $segment2 == null) ? 'active' : '' }}">{{ __('Apply')}}</a>
+                        @can('manage_railway')
                         <a href="{{url('railway/verify')}}" class="menu-item {{ ($segment1 == 'railway' && $segment2 == 'verify') ? 'active' : '' }}">{{ __('Verify Submission')}}</a>
+                        @endcan
                     </div>
-                    @endcan
+
                 </div>
                 <div class="nav-item {{ ($segment1 == 'semesters') ? 'active' : '' }}">
                     <a href="{{url('semesters')}}"><i class="ik ik-server"></i><span>{{ __('Semesters')}}</span></a>
@@ -61,9 +63,9 @@
                         @can('manage_semester')
                             <a href="{{url('semester')}}" class="menu-item {{ ($segment1 == 'semester') ? 'active' : '' }}">{{ __('Semester')}}</a>
                         @endcan
-                        @can('manage_result')
-                            <a href="{{url('result')}}" class="menu-item {{ ($segment1 == 'result') ? 'active' : '' }}">{{ __('Results')}}</a>
-                        @endcan
+{{--                        @can('manage_result')--}}
+{{--                            <a href="{{url('result')}}" class="menu-item {{ ($segment1 == 'result') ? 'active' : '' }}">{{ __('Results')}}</a>--}}
+{{--                        @endcan--}}
                     </div>
                 </div>
                 @endcanany
