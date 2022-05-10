@@ -36,7 +36,7 @@
                 </div>
                 @canany(['manage_user','manage_roles','manage_permission','manage_stream','manage_branch','manage_course','manage_semester','manage_result'])
                 <div class="nav-item {{ ($segment1 == 'users' || $segment1 == 'roles'||$segment1 == 'permission' ||$segment1 == 'user' || $segment1 == 'stream' || $segment1 == 'branch' || $segment1 == 'course' || $segment1 == 'semester' || $segment1 == 'result') ? 'active open' : '' }} has-sub">
-                    <a href="#"><i class="ik ik-user"></i><span>{{ __('Adminstrator')}}</span></a>
+                    <a href="#"><i class="ik ik-user"></i><span>{{ __('Administrator')}}</span></a>
                     <div class="submenu-content">
                         <!-- only those have manage_user permission will get access -->
                         @can('manage_user')
