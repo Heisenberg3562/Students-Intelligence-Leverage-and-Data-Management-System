@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/logout', [LoginController::class,'logout']);
 	Route::get('/clear-cache', [HomeController::class,'clearCache']);
     Route::get('/profile', [UserController::class,'myProfile']);
+    Route::get('/user/profile/{id}', [UserController::class,'userProfile']);
     Route::post('/profile/edit', [UserController::class,'updateMyProfile'])->name('update-profile');
 
 	// dashboard route

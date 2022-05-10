@@ -298,6 +298,42 @@ class UserController extends Controller
         }
     }
 
+    public function userProfile($id)
+    {
+        try
+        {
+//            $user  = User::with('roles','permissions')->find($id);
+            $user = Auth::user();
+            if(!in_array("Student",$user->get_roles())){
+                $user = User::where('rollno',$id)->first();
+                $user_role = $user->roles->first();
+                $roles     = Role::pluck('name','id');
+                $branches = Branch::pluck('name','id');
+                $skills = Skill::where('user_id',Auth::user()->id)->get();
+                $colors = array("bg-success","bg-info","bg-danger","bg-warning");
+                return view('admin.student.profile', compact('user','user_role','roles','branches','skills','colors'));
+            }else{
+                return redirect('404');
+            }
+
+
+//            if($user){
+//                $user_role = $user->roles->first();
+//                $roles     = Role::pluck('name','id');
+//                $branches = Branch::pluck('name','id');
+//                $skills = Skill::where('user_id',Auth::user()->id)->get();
+//                $colors = array("bg-success","bg-info","bg-danger","bg-warning");
+//                return view('admin.student.profile', compact('user','user_role','roles','branches','skills','colors'));
+//            }else{
+//                return redirect('404');
+//            }
+
+        }catch (\Exception $e) {
+            $bug = $e->getMessage();
+            return redirect()->back()->with('error', $bug);
+        }
+    }
+
     public function updateMyProfile(Request $request)
     {
 
