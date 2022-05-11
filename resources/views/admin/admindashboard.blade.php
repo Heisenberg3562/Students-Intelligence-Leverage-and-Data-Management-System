@@ -83,7 +83,7 @@
                         <p class="mb-30 bg-green lbl-card"><i class="fas fa-users"></i> Consessions Approved</p>
                         <div class="text-center">
                             <h2 class="mb-0 d-inline-block text-green">{{ $count }}</h2>
-                            <p class="mb-0 d-inline-block">Consessions</p>
+                            <p class="mb-0 d-inline-block">Concessions</p>
                             <p class="mb-0 mt-15"><i class="fas fa-caret-up mr-10 f-18 text-green"></i>From Previous Year</p>
                         </div>
                     </div>
