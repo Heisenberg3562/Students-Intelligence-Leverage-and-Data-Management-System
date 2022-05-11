@@ -31,9 +31,12 @@
                     </div>
 
                 </div>
-                <div class="nav-item {{ ($segment1 == 'semesters') ? 'active' : '' }}">
-                    <a href="{{url('semesters')}}"><i class="ik ik-server"></i><span>{{ __('Semesters')}}</span></a>
-                </div>
+                @if(Auth::user()->hasRole('Student'))
+                    <div class="nav-item {{ ($segment1 == 'semesters') ? 'active' : '' }}">
+                        <a href="{{url('semesters')}}"><i class="ik ik-server"></i><span>{{ __('Semesters')}}</span></a>
+                    </div>
+                @endif
+
                 @canany(['manage_user','manage_roles','manage_permission','manage_stream','manage_branch','manage_course','manage_semester','manage_result'])
                 <div class="nav-item {{ ($segment1 == 'users' || $segment1 == 'roles'||$segment1 == 'permission' ||$segment1 == 'user' || $segment1 == 'stream' || $segment1 == 'branch' || $segment1 == 'course' || $segment1 == 'semester' || $segment1 == 'result') ? 'active open' : '' }} has-sub">
                     <a href="#"><i class="ik ik-user"></i><span>{{ __('Administrator')}}</span></a>

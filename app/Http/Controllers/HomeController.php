@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Railway;
 use Google\Exception;
 use Google_Service_Sheets;
 use Illuminate\Http\Request;
@@ -81,7 +82,9 @@ class HomeController extends Controller
 //            $json = json_decode(file_get_contents('http://127.0.0.1:8000/api/sheetData/?sheetId=19yVlR5lmrBnqBcS4fkrAJxzVDwW20dH47uBXNI7hmpY&rollno=18CO20'), true);
 ////            dd($json);
 //            $att = $json['Attendance'];
-            return view('admin.admindashboard');
+            $count = Railway::where('status',1)->count();
+//            dd($count);
+            return view('admin.admindashboard',compact('count'));
 //            return view('admin.admindashboard',compact($json));
         }
         if (Auth::user()->hasRole('Student')) {
