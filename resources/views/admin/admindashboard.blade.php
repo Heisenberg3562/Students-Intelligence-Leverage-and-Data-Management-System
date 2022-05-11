@@ -80,7 +80,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card ticket-card">
                     <div class="card-body">
-                        <p class="mb-30 bg-green lbl-card"><i class="fas fa-users"></i> Consessions Approved</p>
+                        <p class="mb-30 bg-green lbl-card"><i class="fas fa-users"></i> Concessions Approved</p>
                         <div class="text-center">
                             <h2 class="mb-0 d-inline-block text-green">{{ $count }}</h2>
                             <p class="mb-0 d-inline-block">Concessions</p>
